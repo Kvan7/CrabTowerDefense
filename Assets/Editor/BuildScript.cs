@@ -10,7 +10,8 @@ public class BuildScript
     {
         BuildLinuxServer();
         BuildWindowsServer();
-        BuildClientAPK();
+        BuildAndroidClient();
+        BuildWindowsClient();
     }
 
     [MenuItem("Build/Build Server (Linux)")]
@@ -71,8 +72,8 @@ public class BuildScript
         }
     }
 
-    [MenuItem("Build/Build Client (VR APK)")]
-    public static void BuildClientAPK()
+    [MenuItem("Build/Build Client (Android APK)")]
+    public static void BuildAndroidClient()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] {
@@ -84,6 +85,34 @@ public class BuildScript
         buildPlayerOptions.locationPathName = "Builds/Android/Client/Client.apk";
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.CompressWithLz4;
+
+        BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
+        BuildSummary summary = report.summary;
+
+        if (summary.result == BuildResult.Succeeded)
+        {
+            Debug.Log("Build succeeded: " + summary.totalSize + " bytes");
+        }
+
+        if (summary.result == BuildResult.Failed)
+        {
+            Debug.Log("Build failed");
+        }
+    }
+
+    [MenuItem("Build/Build Client (Windows)")]
+    public static void BuildWindowsClient()
+    {
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+        buildPlayerOptions.scenes = new[] {
+                "Assets/MirrorExamplesVR/Scenes/SceneVR-Basic/SceneVR-Basic.unity",
+                "Assets/MirrorExamplesVR/Scenes/SceneVR-Common/SceneVR-Common.unity",
+                "Assets/MirrorExamplesVR/Scenes/SceneVR-Menu/SceneVR-Menu.unity",
+                "Assets/MirrorExamplesVR/Scenes/SceneVR-UnityDemo/SceneVR-UnityDemo.unity"
+            };
+        buildPlayerOptions.locationPathName = "Builds/Windows/Client/Client.exe";
+        buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
+        buildPlayerOptions.options = BuildOptions.CompressWithLz4HC;
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
