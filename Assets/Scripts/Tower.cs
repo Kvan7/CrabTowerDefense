@@ -1,0 +1,48 @@
+using UnityEngine;
+
+public class Tower : MonoBehaviour
+{
+	public GameObject projectilePrefab;
+	public float fireRate = 1f;
+	private float fireCountdown = 0f;
+	private Transform target;
+
+	void Update()
+	{
+		if (target == null)
+			return;
+
+		if (fireCountdown <= 0f)
+		{
+			Shoot();
+			fireCountdown = 1f / fireRate;
+		}
+
+		fireCountdown -= Time.deltaTime;
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("Enemy") && target == null)
+		{
+			target = other.transform;
+		}
+	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if (other.transform == target)
+		{
+			target = null;
+		}
+	}
+
+	void Shoot()
+	{
+		GameObject projectileGO = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+		Projectile projectile = projectileGO.GetComponent<Projectile>();
+
+		if (projectile != null)
+			projectile.Seek(target);
+	}
+}
