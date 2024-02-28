@@ -6,6 +6,7 @@ public class Tower : MonoBehaviour
 	public float fireRate = 1f;
 	private float fireCountdown = 0f;
 	private Transform target;
+	private float rotationSpeed = 1f;
 
 	void Update()
 	{
@@ -19,6 +20,13 @@ public class Tower : MonoBehaviour
 		}
 
 		fireCountdown -= Time.deltaTime;
+
+		// also look at the target
+		// Rotate the tower to face the target
+		Vector3 targetDirection = target.position - transform.position;
+		Quaternion lookRotation = Quaternion.LookRotation(targetDirection);
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+
 	}
 
 	void OnTriggerEnter(Collider other)
