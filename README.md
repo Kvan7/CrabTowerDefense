@@ -1,3 +1,6 @@
+# Planning Tools
+[Miro Board](https://miro.com/app/board/uXjVNndXVIE=/?share_link_id=934431699698)
+
 # ExamplesVR
 A selection of VR Examples for Unity and Mirror.  
 (Please note, this repo is currently a work in progress)
