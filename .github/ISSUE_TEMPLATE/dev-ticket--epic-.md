@@ -17,5 +17,5 @@ If applicable a short user story
 
 ## Sub tasks
 
-[ ] - Task required (#<issueNumber>)
-[ ] - Task required (#<issueNumber>)
+- [ ] Task required (#<issueNumber>)
+- [ ] Task required (#<issueNumber>)
