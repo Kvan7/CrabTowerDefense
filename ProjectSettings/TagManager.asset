@@ -8,11 +8,15 @@ TagManager:
   - ChatWindow
   - Enemy
   - Waypoint
+  - Projectile
+  - Flame
+  - Water
+  - Destroyer
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Terrain
   - Water
   - UI
   - Waypoints

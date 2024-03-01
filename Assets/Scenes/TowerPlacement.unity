@@ -762,6 +762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -846,6 +847,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1313124813}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &888668570
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,6 +882,7 @@ GameObject:
   - component: {fileID: 888668574}
   - component: {fileID: 888668573}
   - component: {fileID: 888668572}
+  - component: {fileID: 888668575}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1049,6 +1074,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &888668575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888668570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1001 &1035710600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2225,7 +2294,7 @@ GameObject:
   - component: {fileID: 2135667052}
   - component: {fileID: 2135667051}
   - component: {fileID: 2135667054}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlaneFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2332,6 +2401,7 @@ GameObject:
   - component: {fileID: 2147186460}
   - component: {fileID: 2147186459}
   - component: {fileID: 2147186458}
+  - component: {fileID: 2147186463}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -2999,6 +3069,24 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_ButtonPressPoint: 0.5
+--- !u!114 &2147186463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147186456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d369bc5c0e6f7f249b21acf4e7e6f897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnActionReference: {fileID: 3751773763766037326, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  prefabToSpawn: {fileID: 3882760073860709499, guid: 046f8821fbea4f24997503d2287617ba, type: 3}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &71716271702681223
 GameObject:
   m_ObjectHideFlags: 0
