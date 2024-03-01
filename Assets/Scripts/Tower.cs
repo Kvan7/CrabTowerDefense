@@ -7,6 +7,7 @@ public class Tower : MonoBehaviour
 	private float fireCountdown = 0f;
 	private Transform target;
 	private float rotationSpeed = 1f;
+	public bool instantRotation = false;
 
 	void Update()
 	{
@@ -23,9 +24,18 @@ public class Tower : MonoBehaviour
 
 		// also look at the target
 		// Rotate the tower to face the target
-		Vector3 targetDirection = target.position - transform.position;
-		Quaternion lookRotation = Quaternion.LookRotation(targetDirection);
-		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+		if (instantRotation)
+		{
+			Vector3 targetDirection = target.position - transform.position;
+			transform.rotation = Quaternion.LookRotation(targetDirection);
+		}
+		else
+		{
+			Vector3 targetDirection = target.position - transform.position;
+			Quaternion lookRotation = Quaternion.LookRotation(targetDirection);
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+		}
+
 
 	}
 

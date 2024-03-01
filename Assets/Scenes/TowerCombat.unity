@@ -3129,6 +3129,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3207196837220785927, guid: 046f8821fbea4f24997503d2287617ba, type: 3}
+      propertyPath: instantRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207196837220785927, guid: 046f8821fbea4f24997503d2287617ba, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
