@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5781915163654585925}
   - component: {fileID: 8855939343522192937}
   - component: {fileID: 4063601087343853495}
-  - component: {fileID: 2185383975706568561}
+  - component: {fileID: 3151447888590203884}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
---- !u!114 &2185383975706568561
+--- !u!114 &3151447888590203884
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  moveSpeed: 10
-  rotSpeed: 5
-  waypointCompleteDistance: 1
+  moveSpeed: 7
+  rotSpeed: 10
+  waypointCompleteDistance: 0.5

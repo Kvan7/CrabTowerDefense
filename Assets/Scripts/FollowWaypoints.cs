@@ -9,10 +9,10 @@ public class FollowWaypoints : MonoBehaviour
 	int currentWP = 0;
 	bool endOfPath = false;
 
-	public float moveSpeed = 10.0f;
-	public float rotSpeed = 5.0f;
+	public float moveSpeed = 7.0f;
+	public float rotSpeed = 10.0f;
 
-	public float waypointCompleteDistance = 1.0f;
+	public float waypointCompleteDistance = 0.5f;
 
 	private List<GameObject> waypoints = new List<GameObject>();
 
