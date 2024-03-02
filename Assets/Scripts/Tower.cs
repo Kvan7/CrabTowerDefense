@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -8,10 +9,25 @@ public class Tower : MonoBehaviour
 	private Transform target;
 	private float rotationSpeed = 1f;
 	public bool instantRotation = false;
+	public GameObject rangeIndicator; // Assign this in the editor
+	public GameObject lookAtObject; // Assign this in the editor
+
+	public float checkInterval = 0.5f; // How often to check for enemies in seconds
+	[SerializeField] private float attackRange = 10f; // The range within which to look for enemies
+	public bool isMoveable { get; set; } = false; // Whether the tower can be moved
+
+	void Start()
+	{
+		StartCoroutine(CheckForEnemies());
+	}
+
 
 	void Update()
 	{
 		if (target == null)
+			return;
+
+		if (isMoveable)
 			return;
 
 		if (fireCountdown <= 0f)
@@ -24,43 +40,87 @@ public class Tower : MonoBehaviour
 
 		// also look at the target
 		// Rotate the tower to face the target
-		if (instantRotation)
+		Vector3 targetDirection = target.position - transform.position;
+		if (!instantRotation)
 		{
-			Vector3 targetDirection = target.position - transform.position;
-			transform.rotation = Quaternion.LookRotation(targetDirection);
+			Quaternion lookRotation = Quaternion.LookRotation(targetDirection);
+			lookAtObject.transform.rotation = Quaternion.Slerp(lookAtObject.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 		}
 		else
 		{
-			Vector3 targetDirection = target.position - transform.position;
-			Quaternion lookRotation = Quaternion.LookRotation(targetDirection);
-			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+			lookAtObject.transform.rotation = Quaternion.LookRotation(targetDirection);
 		}
-
-
 	}
-
-	void OnTriggerEnter(Collider other)
+	IEnumerator CheckForEnemies()
 	{
-		if (other.gameObject.CompareTag("Enemy") && target == null)
+		while (true)
 		{
-			target = other.transform;
+			UpdateTarget();
+			yield return new WaitForSeconds(checkInterval);
 		}
 	}
 
-	void OnTriggerExit(Collider other)
+	void UpdateTarget()
 	{
-		if (other.transform == target)
+		Collider[] hits = Physics.OverlapSphere(transform.position, attackRange);
+		float closestDistance = float.MaxValue;
+		Transform closestEnemy = null;
+
+		foreach (Collider hit in hits)
 		{
-			target = null;
+			if (hit.gameObject.CompareTag("Enemy"))
+			{
+				float distance = Vector3.Distance(transform.position, hit.transform.position);
+				if (distance < closestDistance)
+				{
+					closestDistance = distance;
+					closestEnemy = hit.transform;
+				}
+			}
+		}
+
+		target = closestEnemy;
+
+		if (target != null)
+		{
+			// Target the closest enemy
+			// Example: AimAt(target);
+			// Example: ShootAt(target);
 		}
 	}
+
 
 	void Shoot()
 	{
+		if (isMoveable)
+		{
+			Debug.LogWarning("Tower is moveable, cannot shoot");
+			return;
+		}
 		GameObject projectileGO = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 		Projectile projectile = projectileGO.GetComponent<Projectile>();
 
 		if (projectile != null)
 			projectile.Seek(target);
 	}
+
+
+	void UpdateRangeIndicator()
+	{
+		if (rangeIndicator != null)
+		{
+			// Assuming the sphere's original scale is 1 unit in diameter
+			// and that the attackRange represents the radius of the desired sphere,
+			// the scale factor should be attackRange * 2 (to get diameter),
+			// and since the default Unity sphere has a diameter of 1, we don't need to adjust further
+			float scaleFactor = attackRange * 2;
+			rangeIndicator.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+		}
+	}
+
+	void OnValidate()
+	{
+		UpdateRangeIndicator();
+	}
+
 }
