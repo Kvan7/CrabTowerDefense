@@ -12,9 +12,9 @@ public class Tower : MonoBehaviour
 	public GameObject rangeIndicator; // Assign this in the editor
 	public GameObject lookAtObject; // Assign this in the editor
 
-	public float checkInterval = 0.5f; // How often to check for enemies in seconds
+	// public float checkInterval = 0.5f; // How often to check for enemies in seconds
 	[SerializeField] private float attackRange = 10f; // The range within which to look for enemies
-	public bool isMoveable { get; set; } = false; // Whether the tower can be moved
+	public bool isMoveable { get; set; } = true; // Whether the tower can be moved
 
 	void Start()
 	{
@@ -30,13 +30,13 @@ public class Tower : MonoBehaviour
 		if (isMoveable)
 			return;
 
-		if (fireCountdown <= 0f)
-		{
-			Shoot();
-			fireCountdown = 1f / fireRate;
-		}
+		// if (fireCountdown <= 0f)
+		// {
+		// 	Shoot();
+		// 	fireCountdown = 1f / fireRate;
+		// }
 
-		fireCountdown -= Time.deltaTime;
+		// fireCountdown -= Time.deltaTime;
 
 		// also look at the target
 		// Rotate the tower to face the target
@@ -56,7 +56,7 @@ public class Tower : MonoBehaviour
 		while (true)
 		{
 			UpdateTarget();
-			yield return new WaitForSeconds(checkInterval);
+			yield return new WaitForSeconds(fireRate);
 		}
 	}
 
@@ -65,6 +65,7 @@ public class Tower : MonoBehaviour
 		Collider[] hits = Physics.OverlapSphere(transform.position, attackRange);
 		float closestDistance = float.MaxValue;
 		Transform closestEnemy = null;
+		int enemyCount = 0;
 
 		foreach (Collider hit in hits)
 		{
@@ -76,16 +77,18 @@ public class Tower : MonoBehaviour
 					closestDistance = distance;
 					closestEnemy = hit.transform;
 				}
+				enemyCount++;
 			}
 		}
 
-		target = closestEnemy;
+		Debug.Log("Closest enemy: " + closestEnemy + " at distance: " + closestDistance + " total hits: " + enemyCount);
 
-		if (target != null)
+		target = closestEnemy;
+		Debug.Log("Target: " + target);
+
+		if (target != null && !isMoveable)
 		{
-			// Target the closest enemy
-			// Example: AimAt(target);
-			// Example: ShootAt(target);
+			Shoot();
 		}
 	}
 
@@ -100,6 +103,7 @@ public class Tower : MonoBehaviour
 		GameObject projectileGO = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 		Projectile projectile = projectileGO.GetComponent<Projectile>();
 
+		Debug.Log("Shooting at: " + target);
 		if (projectile != null)
 			projectile.Seek(target);
 	}
@@ -122,5 +126,4 @@ public class Tower : MonoBehaviour
 	{
 		UpdateRangeIndicator();
 	}
-
 }

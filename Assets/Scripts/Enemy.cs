@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour
 
 	void Die()
 	{
+		// give money to player
+		FindObjectOfType<ShopManager>().AddMoney(10);
+		// destroy enemy
 		Destroy(gameObject);
 	}
 }

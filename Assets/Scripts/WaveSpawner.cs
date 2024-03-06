@@ -10,14 +10,22 @@ public class WaveSpawner : MonoBehaviour
 	public GameObject path;
 
 	private Vector3 spawnOrigin;
+	public Transform spawnPoint;
 
 	private Dictionary<string, GameObject> enemies;
+	private Coroutine waveCoroutine;
 
-	void Start()
+	public void StartWave()
 	{
-		spawnOrigin = new Vector3(0, 0, 0);
-		enemies = enemiesList.ToDictionary(x => x.name, x => x);
-		StartCoroutine(SpawnEnemy());
+		if (waveCoroutine == null)
+		{
+			spawnOrigin = spawnPoint.position;
+			enemies = enemiesList.ToDictionary(x => x.name, x => x);
+			waveCoroutine = StartCoroutine(SpawnEnemy());
+		}
+		// spawnOrigin = spawnPoint.position;
+		// enemies = enemiesList.ToDictionary(x => x.name, x => x);
+		// waveCoroutine = StartCoroutine(SpawnEnemy());
 	}
 
 	IEnumerator SpawnEnemy()
@@ -28,11 +36,5 @@ public class WaveSpawner : MonoBehaviour
 			enemy.GetComponent<FollowWaypoints>().path = path;
 			yield return new WaitForSeconds(2);
 		}
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
 	}
 }

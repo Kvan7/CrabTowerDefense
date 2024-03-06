@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: tower 2
   cost: 50
-  prefab: {fileID: 0}
+  prefab: {fileID: 3882760073860709499, guid: d586ef2f6946fab4eb13b43a25437e7b, type: 3}

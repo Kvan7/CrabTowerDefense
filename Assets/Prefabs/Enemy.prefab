@@ -133,6 +133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  moveSpeed: 7
-  rotSpeed: 10
+  moveSpeed: 4
+  rotSpeed: 7
   waypointCompleteDistance: 0.5

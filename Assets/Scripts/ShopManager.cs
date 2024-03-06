@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class ShopManager : MonoBehaviour
 {
 
 	public int money = 100; // Start with 100 money
-	[SerializeField] private Text moneyText;
+	[SerializeField] private TMP_Text moneyText;
 	public Transform spawnPoint; // Position to spawn towers
 
 	// Start is called before the first frame update
