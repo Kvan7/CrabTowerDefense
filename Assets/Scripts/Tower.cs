@@ -110,10 +110,8 @@ public class Tower : MonoBehaviour
 			}
 		}
 
-		Debug.Log("Closest enemy: " + closestEnemy + " at distance: " + closestDistance + " total hits: " + enemyCount);
 
 		target = closestEnemy;
-		Debug.Log("Target: " + target);
 
 		if (target != null && !isMoveable)
 		{
@@ -126,13 +124,11 @@ public class Tower : MonoBehaviour
 	{
 		if (isMoveable)
 		{
-			Debug.LogWarning("Tower is moveable, cannot shoot");
 			return;
 		}
 		GameObject projectileGO = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 		Projectile projectile = projectileGO.GetComponent<Projectile>();
 
-		Debug.Log("Shooting at: " + target);
 		if (projectile != null)
 			projectile.Seek(target);
 	}

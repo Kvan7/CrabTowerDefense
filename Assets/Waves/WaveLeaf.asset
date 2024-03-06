@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264899c57db5112449dda0ff41570df0, type: 3}
   m_Name: WaveLeaf
   m_EditorClassIdentifier: 
-  endDelay: 0
+  endDelay: 1
   selectedEnemyPrefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}

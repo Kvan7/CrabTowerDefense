@@ -8,13 +8,17 @@ public class ShopManager : MonoBehaviour
 {
 
 	public int money = 100; // Start with 100 money
+	public WaveSpawner waveSpawner;
 	[SerializeField] private TMP_Text moneyText;
 	public Transform spawnPoint; // Position to spawn towers
 
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		if (waveSpawner != null)
+		{
+			waveSpawner.onWaveComplete.AddListener(WaveCompleted);
+		}
 	}
 
 	// Update is called once per frame
@@ -23,6 +27,19 @@ public class ShopManager : MonoBehaviour
 
 	}
 
+	private void OnDestroy()
+	{
+		// Don't forget to remove the listener when this object is destroyed
+		if (waveSpawner != null)
+		{
+			waveSpawner.onWaveComplete.RemoveListener(WaveCompleted);
+		}
+	}
+
+	private void WaveCompleted()
+	{
+		AddMoney(50);
+	}
 
 	void UpdateMoneyUI()
 	{

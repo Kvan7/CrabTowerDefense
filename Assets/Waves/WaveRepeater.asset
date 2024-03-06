@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c229f401f9c15b47997f52079e409e2, type: 3}
   m_Name: WaveRepeater
   m_EditorClassIdentifier: 
-  endDelay: 0
+  endDelay: 0.5
   waveElements:
-  - {fileID: 11400000}
   - {fileID: 11400000, guid: a43351786988b054e993f136746136fb, type: 2}
   - {fileID: 11400000, guid: a43351786988b054e993f136746136fb, type: 2}
-  selectedWaveElements: {fileID: 0}
+  selectedWaveElements: {fileID: 11400000}
   repeatCount: 1
