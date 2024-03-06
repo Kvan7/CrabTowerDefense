@@ -5,7 +5,7 @@ public class Tower : MonoBehaviour
 {
 	public GameObject projectilePrefab;
 	public float fireRate = 1f;
-	private float fireCountdown = 0f;
+	// private float fireCountdown = 0f;
 	private Transform target;
 	private float rotationSpeed = 1f;
 	public bool instantRotation = false;
@@ -14,7 +14,28 @@ public class Tower : MonoBehaviour
 
 	// public float checkInterval = 0.5f; // How often to check for enemies in seconds
 	[SerializeField] private float attackRange = 10f; // The range within which to look for enemies
-	public bool isMoveable { get; set; } = true; // Whether the tower can be moved
+	private bool _isMoveable = true; // Whether the tower can be moved
+
+	public bool isMoveable
+	{
+		get { return _isMoveable; }
+		set
+		{
+			if (value)
+			{
+				// If the tower is now moveable, stop shooting
+				target = null;
+				_isMoveable = value;
+				gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+			}
+			else
+			{
+				// If the tower is now not moveable, start shooting
+				_isMoveable = value;
+				gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+			}
+		}
+	}
 
 	void Start()
 	{
@@ -59,10 +80,18 @@ public class Tower : MonoBehaviour
 			yield return new WaitForSeconds(fireRate);
 		}
 	}
+	void OnDrawGizmos()
+	{
+		// Set the color of the Gizmo
+		Gizmos.color = Color.red; // You can change the color to whatever you prefer
+
+		// Draw a wireframe sphere with the same center and radius as your Physics.OverlapSphere call
+		Gizmos.DrawWireSphere(transform.position, attackRange * gameObject.transform.localScale.x);
+	}
 
 	void UpdateTarget()
 	{
-		Collider[] hits = Physics.OverlapSphere(transform.position, attackRange);
+		Collider[] hits = Physics.OverlapSphere(transform.position, attackRange * gameObject.transform.localScale.x);
 		float closestDistance = float.MaxValue;
 		Transform closestEnemy = null;
 		int enemyCount = 0;

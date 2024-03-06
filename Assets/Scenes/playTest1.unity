@@ -1384,6 +1384,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.03
       objectReference: {fileID: 0}
+    - target: {fileID: 8669137971820048389, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_RaycastMask.m_Bits
+      value: 2147483809
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669137971820048389, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_StartingHoverFilters.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933070723566546062, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_RaycastMask.m_Bits
+      value: 2147483809
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1478,7 +1490,7 @@ MonoBehaviour:
   enemiesList:
   - {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
   path: {fileID: 128426777}
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 430009599}
 --- !u!4 &430009599
 Transform:
   m_ObjectHideFlags: 0
