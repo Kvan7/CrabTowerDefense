@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class WaveSpawner : MonoBehaviour
 {
 	public Transform spawnPoint;
-	public SuperWave currentWave;
+	public Wave currentWave;
 	public GameObject path;
 	public UnityEvent onWaveComplete;
 
@@ -18,7 +18,7 @@ public class WaveSpawner : MonoBehaviour
 		spawnOrigin = spawnPoint.position;
 	}
 
-	public void StartWave(SuperWave wave)
+	public void StartWave(Wave wave)
 	{
 		currentWave = wave;
 		if (waveCoroutine == null)
@@ -31,7 +31,7 @@ public class WaveSpawner : MonoBehaviour
 		}
 	}
 
-	IEnumerator SpawnWaveItems(List<SuperWave.WaveItem> waveItems, float groupEndDelay, UnityAction onComplete = null)
+	IEnumerator SpawnWaveItems(List<Wave.WaveItem> waveItems, float groupEndDelay, UnityAction onComplete = null)
 	{
 		foreach (var item in waveItems)
 		{

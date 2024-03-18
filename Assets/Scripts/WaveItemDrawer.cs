@@ -3,7 +3,7 @@ using UnityEditorInternal;
 using UnityEngine;
 
 // This attribute specifies that this editor script should be used for WaveItem objects
-[CustomPropertyDrawer(typeof(SuperWave.WaveItem))]
+[CustomPropertyDrawer(typeof(Wave.WaveItem))]
 public class WaveItemDrawer : PropertyDrawer
 {
 	// This will draw the property in the inspector
@@ -42,8 +42,8 @@ public class WaveItemDrawer : PropertyDrawer
 		else
 		{
 			// Draw the prefab field
-			EditorGUI.ObjectField(new Rect(position.x, y, position.width, singleLineHeight),
-									property.FindPropertyRelative("prefab"), typeof(Enemy), new GUIContent("Enemy Prefab"));
+			EditorGUI.PropertyField(new Rect(position.x, y, position.width, singleLineHeight),
+									property.FindPropertyRelative("prefab"));
 		}
 
 		EditorGUI.EndProperty();

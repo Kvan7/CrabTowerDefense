@@ -14,8 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveItems:
   - isGroup: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
     children: []
-    endDelay: 0
+    endDelay: 1
     repeatCount: 0
+  - isGroup: 1
+    prefab: {fileID: 0}
+    children:
+    - isGroup: 0
+      prefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
+      children: []
+      endDelay: 0.2
+      repeatCount: 2
+    - isGroup: 0
+      prefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
+      children: []
+      endDelay: 1
+      repeatCount: 0
+    endDelay: 2
+    repeatCount: 2
+  - isGroup: 0
+    prefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
+    children: []
+    endDelay: 2
+    repeatCount: 5
   endDelay: 0
