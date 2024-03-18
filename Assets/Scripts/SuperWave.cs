@@ -2,17 +2,19 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEditorInternal;
+using System;
 
 [CreateAssetMenu(fileName = "Wavey", menuName = "Game/Wavey")]
 public class SuperWave : ScriptableObject
 {
-	[System.Serializable]
+	[Serializable]
 	public class WaveItem
 	{
 		public bool isGroup;
-		public GameObject prefab; // Used if isGroup == false
+		public Enemy prefab; // Used if isGroup == false
 		public List<WaveItem> children; // Used if isGroup == true
 		public float endDelay;
+		public int repeatCount = 1;
 	}
 
 	public List<WaveItem> waveItems;
@@ -38,6 +40,7 @@ public class WaveEditor : Editor
 			SerializedProperty prefabProp = item.FindPropertyRelative("prefab");
 			SerializedProperty childrenProp = item.FindPropertyRelative("children");
 			SerializedProperty endDelayProp = item.FindPropertyRelative("endDelay");
+			SerializedProperty repeatCountProp = item.FindPropertyRelative("repeatCount");
 
 			rect.y += 2;
 
@@ -49,14 +52,18 @@ public class WaveEditor : Editor
 			EditorGUI.PropertyField(endDelayRect, endDelayProp, new GUIContent("End Delay"));
 
 			rect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+			// Draw repeat count
+			EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), repeatCountProp, new GUIContent("Repeat Count"));
+			rect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
 			if (isGroupProp.boolValue)
 			{
+				// Draw the children list
 				EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUI.GetPropertyHeight(childrenProp, true)), childrenProp, new GUIContent("Children"), true);
 			}
 			else
 			{
-				EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), prefabProp, new GUIContent("Prefab"));
+				EditorGUI.ObjectField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), prefabProp, typeof(Enemy), new GUIContent("Enemy Prefab"));
 			}
 		};
 
@@ -64,9 +71,28 @@ public class WaveEditor : Editor
 		rootWaveItemsList.elementHeightCallback = (index) =>
 		{
 			SerializedProperty item = rootWaveItemsList.serializedProperty.GetArrayElementAtIndex(index);
-			float propertyHeight = EditorGUI.GetPropertyHeight(item, true);
-			return propertyHeight + EditorGUIUtility.standardVerticalSpacing;
+			SerializedProperty isGroupProp = item.FindPropertyRelative("isGroup");
+			SerializedProperty childrenProp = item.FindPropertyRelative("children");
+
+			float baseHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+			float propertyHeight = baseHeight;
+
+			propertyHeight += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing; // repeat height
+
+			// Check if it's a group, add the height of the children property.
+			if (isGroupProp.boolValue)
+			{
+				propertyHeight += EditorGUI.GetPropertyHeight(childrenProp, true) + EditorGUIUtility.standardVerticalSpacing;
+			}
+			// If not a group, just consider the prefab property.
+			else
+			{
+				SerializedProperty prefabProp = item.FindPropertyRelative("prefab");
+				propertyHeight += EditorGUI.GetPropertyHeight(prefabProp, true) + EditorGUIUtility.standardVerticalSpacing;
+			}
+			return propertyHeight;
 		};
+
 
 		rootWaveItemsList.drawElementBackgroundCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
 		{

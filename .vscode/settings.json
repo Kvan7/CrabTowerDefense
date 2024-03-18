@@ -53,6 +53,7 @@
 	},
 	"dotnet.defaultSolution": "ExamplesVR.sln",
 	"cSpell.words": [
+		"Mathf",
 		"Reorderable",
 		"Scriptable",
 		"Slerp"

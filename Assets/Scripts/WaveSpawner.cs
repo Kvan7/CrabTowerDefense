@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class WaveSpawner : MonoBehaviour
 {
 	public Transform spawnPoint;
-	public WaveBase currentWave;
+	public SuperWave currentWave;
 	public GameObject path;
 	public UnityEvent onWaveComplete;
 
@@ -19,12 +18,12 @@ public class WaveSpawner : MonoBehaviour
 		spawnOrigin = spawnPoint.position;
 	}
 
-	public void StartWave(WaveBase wave)
+	public void StartWave(SuperWave wave)
 	{
 		currentWave = wave;
 		if (waveCoroutine == null)
 		{
-			waveCoroutine = StartCoroutine(SpawnWave(currentWave, () =>
+			waveCoroutine = StartCoroutine(SpawnWaveItems(currentWave.waveItems, currentWave.endDelay, () =>
 			{
 				// Invoke the event when the wave is complete
 				onWaveComplete.Invoke();
@@ -32,41 +31,37 @@ public class WaveSpawner : MonoBehaviour
 		}
 	}
 
-	IEnumerator SpawnWave(WaveBase wave, UnityAction onComplete = null)
+	IEnumerator SpawnWaveItems(List<SuperWave.WaveItem> waveItems, float groupEndDelay, UnityAction onComplete = null)
 	{
-		if (wave is WaveLeaf leaf)
+		foreach (var item in waveItems)
 		{
-			yield return SpawnLeaf(leaf);
-		}
-		else if (wave is Wave waveGroup)
-		{
-			foreach (var element in waveGroup.waveElements)
+			// Ensure repeatCount is at least 1
+			int repeatCount = Mathf.Max(1, item.repeatCount);
+
+			for (int i = 0; i < repeatCount; i++)
 			{
-				yield return StartCoroutine(SpawnWave(element));
-				yield return new WaitForSeconds(waveGroup.endDelay);
-			}
-		}
-		else if (wave is WaveRepeater repeater)
-		{
-			for (int i = 0; i < repeater.repeatCount; i++)
-			{
-				foreach (var element in repeater.waveElements)
+				if (item.isGroup)
 				{
-					yield return StartCoroutine(SpawnWave(element));
+					yield return StartCoroutine(SpawnWaveItems(item.children, item.endDelay));
+					// No additional delay here as the last item in children controls the delay
+				}
+				else
+				{
+					yield return SpawnEnemy(item.prefab.gameObject, item.endDelay);
 				}
 			}
-			yield return new WaitForSeconds(repeater.endDelay);
 		}
+		yield return new WaitForSeconds(groupEndDelay);
 
 		onComplete?.Invoke();
 	}
 
-	IEnumerator SpawnLeaf(WaveLeaf leaf)
+
+	IEnumerator SpawnEnemy(GameObject prefab, float endDelay)
 	{
-		GameObject enemy = Instantiate(leaf.selectedEnemyPrefab, spawnOrigin, Quaternion.identity);
-		// Assuming you have a component named FollowWaypoints for path following
+		GameObject enemy = Instantiate(prefab, spawnOrigin, Quaternion.identity);
 		enemy.GetComponent<FollowWaypoints>().path = path;
-		yield return new WaitForSeconds(leaf.endDelay);
+		yield return new WaitForSeconds(endDelay);
 	}
 
 	public void StopWave()
