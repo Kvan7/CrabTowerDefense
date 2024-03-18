@@ -4,6 +4,8 @@ public class Enemy : MonoBehaviour
 {
 	public int health = 100;
 
+	public int damageScore = 5;
+	
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
@@ -18,6 +20,12 @@ public class Enemy : MonoBehaviour
 		// give money to player
 		FindObjectOfType<ShopManager>().AddMoney(10);
 		// destroy enemy
+		Destroy(gameObject);
+	}
+
+	public void CompletedPath()
+	{
+		GameObject.Find("HealthManager").GetComponent<HealthManager>().ScoreTakeDamage(damageScore);
 		Destroy(gameObject);
 	}
 }
