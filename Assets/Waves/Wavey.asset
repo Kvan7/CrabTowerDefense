@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bd2c031e67b8e40bc714739f47c32b, type: 3}
   m_Name: Wavey
   m_EditorClassIdentifier: 
-  waveItems: []
+  waveItems:
+  - isGroup: 0
+    prefab: {fileID: 0}
+    children: []
+    endDelay: 0
+    repeatCount: 0
   endDelay: 0
