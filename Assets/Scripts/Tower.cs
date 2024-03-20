@@ -4,16 +4,20 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
 	public GameObject projectilePrefab;
+	#region Tower Props
+	// Move to scriptable object later
 	public float fireRate = 1f;
-	// private float fireCountdown = 0f;
+	public float attackDamage = 50f;
+	public float projectileSpeed = 10f;
+	public float projectileLifetime = 5f;
+	[SerializeField] private float attackRange = 10f; // The range within which to look for enemies
+	#endregion
 	private Transform target;
 	private float rotationSpeed = 1f;
 	public bool instantRotation = false;
 	public GameObject rangeIndicator; // Assign this in the editor
 	public GameObject lookAtObject; // Assign this in the editor
 
-	// public float checkInterval = 0.5f; // How often to check for enemies in seconds
-	[SerializeField] private float attackRange = 10f; // The range within which to look for enemies
 	private bool _isMoveable = true; // Whether the tower can be moved
 
 	public bool isMoveable
@@ -51,16 +55,6 @@ public class Tower : MonoBehaviour
 		if (isMoveable)
 			return;
 
-		// if (fireCountdown <= 0f)
-		// {
-		// 	Shoot();
-		// 	fireCountdown = 1f / fireRate;
-		// }
-
-		// fireCountdown -= Time.deltaTime;
-
-		// also look at the target
-		// Rotate the tower to face the target
 		Vector3 targetDirection = target.position - transform.position;
 		if (!instantRotation)
 		{
@@ -77,7 +71,7 @@ public class Tower : MonoBehaviour
 		while (true)
 		{
 			UpdateTarget();
-			yield return new WaitForSeconds(fireRate);
+			yield return new WaitForSeconds(1 / fireRate);
 		}
 	}
 	void OnDrawGizmos()
@@ -126,12 +120,32 @@ public class Tower : MonoBehaviour
 		{
 			return;
 		}
-		GameObject projectileGO = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-		Projectile projectile = projectileGO.GetComponent<Projectile>();
 
-		if (projectile != null)
-			projectile.Seek(target);
+		if (target == null)
+		{
+			Debug.LogWarning("Attempted to shoot but no target was set.");
+			return;
+		}
+
+		GameObject projectileObject = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+		if (projectileObject == null)
+		{
+			Debug.LogError("Failed to instantiate projectile. Check the projectile prefab.");
+			return;
+		}
+
+		Projectile projectile = projectileObject.GetComponent<Projectile>();
+		if (projectile == null)
+		{
+			Debug.LogError("Instantiated object does not have a Projectile component.");
+			Destroy(projectileObject);
+			return;
+		}
+
+		projectile.TowerSettings(projectileSpeed, attackDamage, projectileLifetime);
+		projectile.Initialize(target.position);
 	}
+
 
 
 	void UpdateRangeIndicator()

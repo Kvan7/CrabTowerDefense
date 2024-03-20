@@ -1,60 +1,79 @@
 using UnityEngine;
+using System.Collections; // Required for coroutines
 
 public class Projectile : MonoBehaviour
 {
-	public float speed = 70f;
-	public float damage = 50f;
-	private Transform target;
+	private float speed = 10f;
+	private float damage = 50f;
+	private float lifetime = 5f; // Lifetime of the projectile in seconds
+	public GameObject particleEffectPrefab; // Reference to your particle system prefab
 
-	void Update()
+	private void Start()
 	{
-		if (target == null)
+		Destroy(gameObject, lifetime); // Destroy the projectile after a certain time
+	}
+
+	public void TowerSettings(float speed, float damage, float lifetime)
+	{
+		this.speed = speed;
+		this.damage = damage;
+		this.lifetime = lifetime;
+	}
+
+	public void Initialize(Vector3 targetPosition)
+	{
+		if (TryGetComponent<Rigidbody>(out var rb))
 		{
-			Destroy(gameObject); // Destroy the projectile if the target is null (e.g., the target was destroyed before the projectile hits it)
-			return;
+			Vector3 initialDirection = targetPosition - transform.position;
+			rb.velocity = initialDirection.normalized * speed;
+
+			rb.useGravity = false;
+			rb.drag = 0;
+
+			if (initialDirection != Vector3.zero)
+			{
+				transform.forward = initialDirection.normalized;
+			}
 		}
-
-		Vector3 direction = target.position - transform.position;
-		float distanceThisFrame = speed * Time.deltaTime;
-
-		// Check if the projectile is close to hitting the target
-		if (direction.magnitude <= distanceThisFrame)
+		else
 		{
-			HitTarget();
-			return;
+			Debug.LogWarning("Projectile does not have a Rigidbody component.");
 		}
-
-		// Move the projectile towards the target
-		transform.Translate(direction.normalized * distanceThisFrame, Space.World);
-		// Optionally, make the projectile face the target
-		transform.LookAt(target);
 	}
 
 	void OnCollisionEnter(Collision collision)
 	{
-		var enemy = collision.collider.GetComponent<Enemy>();
-		if (enemy != null)
+		if (collision.collider.TryGetComponent<Enemy>(out var enemy))
 		{
 			enemy.TakeDamage((int)damage);
-			// Apply additional effects like slowing the enemy if needed
 		}
+		else
+		{
+			Debug.LogWarning("Projectile collided with an object that is not an enemy.");
+			Debug.LogWarning($"Object name: {collision.collider.name}");
+		}
+
+		// Instantiate and play the particle effect at the point of collision
+		if (particleEffectPrefab != null)
+		{
+			GameObject effect = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
+			ParticleSystem particles = effect.GetComponent<ParticleSystem>();
+			if (particles != null)
+			{
+				StartCoroutine(DestroyAfterPlay(particles));
+			}
+			else
+			{
+				Destroy(effect); // If no ParticleSystem is found, destroy the effect object immediately
+			}
+		}
+
 		Destroy(gameObject); // Destroy the projectile upon impact
 	}
 
-	public void Seek(Transform _target)
+	IEnumerator DestroyAfterPlay(ParticleSystem ps)
 	{
-		target = _target;
-	}
-
-	void HitTarget()
-	{
-		// Add what happens when the projectile hits the target here
-		// For example, apply damage, play an explosion effect, etc.
-		var enemy = target.GetComponent<Enemy>();
-		if (enemy != null)
-		{
-			enemy.TakeDamage((int)damage);
-		}
-		Destroy(gameObject); // Destroy the projectile upon hitting the target
+		yield return new WaitWhile(() => ps.isPlaying);
+		Destroy(ps.gameObject);
 	}
 }

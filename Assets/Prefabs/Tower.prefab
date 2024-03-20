@@ -486,11 +486,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
-  fireRate: 1
+  fireRate: 10
+  attackDamage: 10
+  projectileSpeed: 70
+  projectileLifetime: 1
+  attackRange: 0.5
   instantRotation: 0
   rangeIndicator: {fileID: 1722502045267528470}
   lookAtObject: {fileID: 3216857142517122292}
-  attackRange: 0.5
 --- !u!54 &3197809592703383179
 Rigidbody:
   m_ObjectHideFlags: 0

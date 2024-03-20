@@ -12,7 +12,7 @@ public class WaveSpawner : MonoBehaviour
 	private Vector3 spawnOrigin;
 	private Coroutine waveCoroutine;
 
-	private int currentWaveIndex = 1; // Start with the first wave
+	private int currentWaveIndex = 0; // Start with the first wave
 	private string wavesFolder = "Waves"; // Folder within Resources where waves are stored
 
 
@@ -29,8 +29,13 @@ public class WaveSpawner : MonoBehaviour
 			Debug.LogWarning("Cannot start next wave, enemies still present.");
 			return;
 		}
+		if (waveCoroutine != null)
+		{
+			Debug.LogWarning("Cannot start next wave, wave already in progress.");
+			return;
+		}
 
-		LoadAndStartWave(currentWaveIndex++);
+		LoadAndStartWave(++currentWaveIndex);
 	}
 
 	private void LoadAndStartWave(int waveIndex)
