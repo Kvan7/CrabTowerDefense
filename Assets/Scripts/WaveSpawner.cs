@@ -6,44 +6,65 @@ using UnityEngine.Events;
 public class WaveSpawner : MonoBehaviour
 {
 	public Transform spawnPoint;
-	public Wave currentWave;
 	public GameObject path;
 	public UnityEvent onWaveComplete;
 
 	private Vector3 spawnOrigin;
 	private Coroutine waveCoroutine;
 
+	private int currentWaveIndex = 1; // Start with the first wave
+	private string wavesFolder = "Waves"; // Folder within Resources where waves are stored
+
+
 	private void Start()
 	{
 		spawnOrigin = spawnPoint.position;
 	}
 
-	public void StartWave(Wave wave)
+	public void StartNextWave()
 	{
-		currentWave = wave;
-		if (waveCoroutine == null)
+		// Check if there are still enemies left before starting the next wave
+		if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
 		{
-			waveCoroutine = StartCoroutine(SpawnWaveItems(currentWave.waveItems, currentWave.endDelay, () =>
-			{
-				// Invoke the event when the wave is complete
-				onWaveComplete.Invoke();
-			}));
+			Debug.LogWarning("Cannot start next wave, enemies still present.");
+			return;
 		}
+
+		LoadAndStartWave(currentWaveIndex++);
+	}
+
+	private void LoadAndStartWave(int waveIndex)
+	{
+		Wave wave = Resources.Load<Wave>($"{wavesFolder}/Wave {waveIndex}");
+		if (wave == null)
+		{
+			Debug.LogError($"Wave {waveIndex} not found. Check if all waves are properly configured.");
+			return;
+		}
+
+		if (waveCoroutine != null)
+		{
+			StopCoroutine(waveCoroutine); // Ensure any existing wave coroutines are stopped before starting a new one
+		}
+
+		waveCoroutine = StartCoroutine(SpawnWaveItems(wave.waveItems, wave.endDelay, () =>
+		{
+			StartCoroutine(CheckForRemainingEnemies());
+		}));
 	}
 
 	IEnumerator SpawnWaveItems(List<Wave.WaveItem> waveItems, float groupEndDelay, UnityAction onComplete = null)
 	{
 		foreach (var item in waveItems)
 		{
-			// Ensure repeatCount is at least 1
 			int repeatCount = Mathf.Max(1, item.repeatCount);
 
 			for (int i = 0; i < repeatCount; i++)
 			{
 				if (item.isGroup)
 				{
+					// For group items, do not pass the onComplete action to avoid premature checks
 					yield return StartCoroutine(SpawnWaveItems(item.children, item.endDelay));
-					// No additional delay here as the last item in children controls the delay
 				}
 				else
 				{
@@ -51,17 +72,24 @@ public class WaveSpawner : MonoBehaviour
 				}
 			}
 		}
+
 		yield return new WaitForSeconds(groupEndDelay);
 
+		// Invoke the onComplete action if provided, which includes the logic to check for remaining enemies
 		onComplete?.Invoke();
 	}
-
 
 	IEnumerator SpawnEnemy(GameObject prefab, float endDelay)
 	{
 		GameObject enemy = Instantiate(prefab, spawnOrigin, Quaternion.identity);
 		enemy.GetComponent<FollowWaypoints>().path = path;
 		yield return new WaitForSeconds(endDelay);
+	}
+
+	private IEnumerator CheckForRemainingEnemies()
+	{
+		yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0); // Wait until all enemies are cleared
+		onWaveComplete.Invoke(); // Notify that the wave is complete, enabling UI for next wave
 	}
 
 	public void StopWave()

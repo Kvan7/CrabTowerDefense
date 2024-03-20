@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEditorInternal;
 using System;
 
+
+// DO NOT CHANGE!!!! WILL OVERWRITE ALL WAVES IN THE GAME
+// MARK AS READ ONLY !!
 [CreateAssetMenu(fileName = "Wavey", menuName = "Game/Wavey")]
 public class Wave : ScriptableObject
 {
