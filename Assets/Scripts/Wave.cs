@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEditorInternal;
 using System;
-
+#if UNITY_EDITOR
+using UnityEditorInternal;
+using UnityEditor;
+#endif
 
 // DO NOT CHANGE!!!! WILL OVERWRITE ALL WAVES IN THE GAME
 // MARK AS READ ONLY !!
@@ -24,8 +25,6 @@ public class Wave : ScriptableObject
 	public float endDelay;
 }
 #if UNITY_EDITOR
-
-
 
 [CustomEditor(typeof(Wave))]
 public class WaveEditor : Editor
