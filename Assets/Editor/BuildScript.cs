@@ -18,10 +18,7 @@ public class BuildScript
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] {
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Basic/SceneVR-Basic.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Common/SceneVR-Common.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Menu/SceneVR-Menu.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-UnityDemo/SceneVR-UnityDemo.unity"
+                "Assets/Scenes/WaveFunction.unity",
             };
         buildPlayerOptions.locationPathName = "Builds/Android/Client/Client.apk";
         buildPlayerOptions.target = BuildTarget.Android;
