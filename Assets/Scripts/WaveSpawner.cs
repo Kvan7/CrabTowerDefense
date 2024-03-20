@@ -1,72 +1,100 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class WaveSpawner : MonoBehaviour
 {
 	public Transform spawnPoint;
-	public WaveBase currentWave;
 	public GameObject path;
 	public UnityEvent onWaveComplete;
 
 	private Vector3 spawnOrigin;
 	private Coroutine waveCoroutine;
 
+	private int currentWaveIndex = 0; // Start with the first wave
+	private string wavesFolder = "Waves"; // Folder within Resources where waves are stored
+
+
 	private void Start()
 	{
 		spawnOrigin = spawnPoint.position;
 	}
 
-	public void StartWave(WaveBase wave)
+	public void StartNextWave()
 	{
-		currentWave = wave;
-		if (waveCoroutine == null)
+		// Check if there are still enemies left before starting the next wave
+		if (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
 		{
-			waveCoroutine = StartCoroutine(SpawnWave(currentWave, () =>
-			{
-				// Invoke the event when the wave is complete
-				onWaveComplete.Invoke();
-			}));
+			Debug.LogWarning("Cannot start next wave, enemies still present.");
+			return;
 		}
+		if (waveCoroutine != null)
+		{
+			Debug.LogWarning("Cannot start next wave, wave already in progress.");
+			return;
+		}
+
+		LoadAndStartWave(++currentWaveIndex);
 	}
 
-	IEnumerator SpawnWave(WaveBase wave, UnityAction onComplete = null)
+	private void LoadAndStartWave(int waveIndex)
 	{
-		if (wave is WaveLeaf leaf)
+		Wave wave = Resources.Load<Wave>($"{wavesFolder}/Wave {waveIndex}");
+		if (wave == null)
 		{
-			yield return SpawnLeaf(leaf);
-		}
-		else if (wave is Wave waveGroup)
-		{
-			foreach (var element in waveGroup.waveElements)
-			{
-				yield return StartCoroutine(SpawnWave(element));
-				yield return new WaitForSeconds(waveGroup.endDelay);
-			}
-		}
-		else if (wave is WaveRepeater repeater)
-		{
-			for (int i = 0; i < repeater.repeatCount; i++)
-			{
-				foreach (var element in repeater.waveElements)
-				{
-					yield return StartCoroutine(SpawnWave(element));
-				}
-			}
-			yield return new WaitForSeconds(repeater.endDelay);
+			Debug.LogError($"Wave {waveIndex} not found. Check if all waves are properly configured.");
+			return;
 		}
 
+		if (waveCoroutine != null)
+		{
+			StopCoroutine(waveCoroutine); // Ensure any existing wave coroutines are stopped before starting a new one
+		}
+
+		waveCoroutine = StartCoroutine(SpawnWaveItems(wave.waveItems, wave.endDelay, () =>
+		{
+			StartCoroutine(CheckForRemainingEnemies());
+		}));
+	}
+
+	IEnumerator SpawnWaveItems(List<Wave.WaveItem> waveItems, float groupEndDelay, UnityAction onComplete = null)
+	{
+		foreach (var item in waveItems)
+		{
+			int repeatCount = Mathf.Max(1, item.repeatCount);
+
+			for (int i = 0; i < repeatCount; i++)
+			{
+				if (item.isGroup)
+				{
+					// For group items, do not pass the onComplete action to avoid premature checks
+					yield return StartCoroutine(SpawnWaveItems(item.children, item.endDelay));
+				}
+				else
+				{
+					yield return SpawnEnemy(item.prefab.gameObject, item.endDelay);
+				}
+			}
+		}
+
+		yield return new WaitForSeconds(groupEndDelay);
+
+		// Invoke the onComplete action if provided, which includes the logic to check for remaining enemies
 		onComplete?.Invoke();
 	}
 
-	IEnumerator SpawnLeaf(WaveLeaf leaf)
+	IEnumerator SpawnEnemy(GameObject prefab, float endDelay)
 	{
-		GameObject enemy = Instantiate(leaf.selectedEnemyPrefab, spawnOrigin, Quaternion.identity);
-		// Assuming you have a component named FollowWaypoints for path following
+		GameObject enemy = Instantiate(prefab, spawnOrigin, Quaternion.identity);
 		enemy.GetComponent<FollowWaypoints>().path = path;
-		yield return new WaitForSeconds(leaf.endDelay);
+		yield return new WaitForSeconds(endDelay);
+	}
+
+	private IEnumerator CheckForRemainingEnemies()
+	{
+		yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0); // Wait until all enemies are cleared
+		onWaveComplete.Invoke(); // Notify that the wave is complete, enabling UI for next wave
 	}
 
 	public void StopWave()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2960297491803565351}
   - component: {fileID: 5808947066736352067}
   - component: {fileID: 809909833832831859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TowerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 5160815653372488994}
   - component: {fileID: 4701540655003494526}
   - component: {fileID: 7933030029485263834}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4484000710554879656}
   - component: {fileID: 4469495124610858063}
   - component: {fileID: 5180444219779965056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7882202136934151165}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 868977124602925221}
   - component: {fileID: 4926552649219677948}
   - component: {fileID: 4239517372679341457}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 3197809592703383179}
   - component: {fileID: 7389927539386647805}
   - component: {fileID: -1991580555751630998}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,12 +486,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
-  fireRate: 1
-  instantRotation: 0
+  fireRate: 0.5
+  attackDamage: 50
+  projectileSpeed: 70
+  projectileLifetime: 5
+  attackRange: 2
+  instantRotation: 1
   rangeIndicator: {fileID: 1722502045267528470}
   lookAtObject: {fileID: 3216857142517122292}
-  checkInterval: 0.5
-  attackRange: 2
 --- !u!54 &3197809592703383179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -693,7 +695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7541348679667143371}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,6 +725,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5011647450865933862}
     m_Modifications:
+    - target: {fileID: 181313968651555345, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 703244385185758329, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085524165433171635, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787228807492158669, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5202211970501327854, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.045569386
@@ -899,9 +917,21 @@ PrefabInstance:
       propertyPath: m_OnLeverDeactivate.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5433587972373598511, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7459442142708147920, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
       propertyPath: m_Name
       value: Lever
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459442142708147920, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483610665172923651, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8042734651732729076, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
       propertyPath: m_LocalRotation.x

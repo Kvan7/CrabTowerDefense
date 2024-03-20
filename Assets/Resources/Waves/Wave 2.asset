@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26bd2c031e67b8e40bc714739f47c32b, type: 3}
+  m_Name: Wave 2
+  m_EditorClassIdentifier: 
+  waveItems:
+  - isGroup: 1
+    prefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
+    children:
+    - isGroup: 0
+      prefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
+      children: []
+      endDelay: 0.5
+      repeatCount: 2
+    endDelay: 1
+    repeatCount: 10
+  endDelay: 0

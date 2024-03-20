@@ -51,8 +51,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ExamplesVR.sln",
+    "dotnet.defaultSolution": "CrabTowerDefense.sln",
     "cSpell.words": [
+        "Mathf",
+        "Reorderable",
         "Scriptable",
         "Slerp"
     ]

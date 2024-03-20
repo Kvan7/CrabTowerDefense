@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 264899c57db5112449dda0ff41570df0, type: 3}
-  m_Name: WaveLeaf
+  m_Script: {fileID: 11500000, guid: 26bd2c031e67b8e40bc714739f47c32b, type: 3}
+  m_Name: Wave 1
   m_EditorClassIdentifier: 
-  endDelay: 1
-  selectedEnemyPrefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
+  waveItems:
+  - isGroup: 0
+    prefab: {fileID: 8217832075571709004, guid: f3f1ee53e3a07ee4eb87844bbcca21a7, type: 3}
+    children: []
+    endDelay: 1
+    repeatCount: 10
+  endDelay: 0

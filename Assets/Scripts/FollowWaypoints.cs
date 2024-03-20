@@ -37,6 +37,7 @@ public class FollowWaypoints : MonoBehaviour
 			{
 				endOfPath = true;
 				transform.Translate(0, 0, 0);
+				gameObject.GetComponent<Enemy>().CompletedPath();
 			}
 			else
 			{

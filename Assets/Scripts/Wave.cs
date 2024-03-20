@@ -1,65 +1,134 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
+using UnityEditorInternal;
+using System;
 
-public abstract class WaveBase : ScriptableObject
+
+// DO NOT CHANGE!!!! WILL OVERWRITE ALL WAVES IN THE GAME
+// MARK AS READ ONLY !!
+[CreateAssetMenu(fileName = "Wavey", menuName = "Game/Wavey")]
+public class Wave : ScriptableObject
 {
+	[Serializable]
+	public class WaveItem
+	{
+		public bool isGroup;
+		public GameObject prefab; // Used if isGroup == false
+		public List<WaveItem> children; // Used if isGroup == true
+		public float endDelay;
+		public int repeatCount = 1;
+	}
+
+	public List<WaveItem> waveItems;
 	public float endDelay;
 }
+#if UNITY_EDITOR
 
-[CreateAssetMenu(fileName = "Wave", menuName = "Game/Wave")]
-public class Wave : WaveBase
-{
-	public List<WaveBase> waveElements;
 
-	public WaveBase selectedWaveElements;
-
-	// public float endDelay;
-}
 
 [CustomEditor(typeof(Wave))]
-public class WaveDataEditor : Editor
+public class WaveEditor : Editor
 {
-	private SerializedProperty waveElementsProp;
-	private SerializedProperty selectedWaveElementsProp;
-	private ReorderableList waveElementsList;
+	ReorderableList rootWaveItemsList;
 
 	private void OnEnable()
 	{
-		waveElementsProp = serializedObject.FindProperty("waveElements");
-		selectedWaveElementsProp = serializedObject.FindProperty("selectedWaveElements");
+		rootWaveItemsList = new ReorderableList(serializedObject, serializedObject.FindProperty("waveItems"), true, true, true, true);
 
-		waveElementsList = new ReorderableList(serializedObject, waveElementsProp, true, true, true, true);
-
-		waveElementsList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
+		rootWaveItemsList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
 		{
-			var element = waveElementsList.serializedProperty.GetArrayElementAtIndex(index);
+			SerializedProperty item = rootWaveItemsList.serializedProperty.GetArrayElementAtIndex(index);
+			SerializedProperty isGroupProp = item.FindPropertyRelative("isGroup");
+			SerializedProperty prefabProp = item.FindPropertyRelative("prefab");
+			SerializedProperty childrenProp = item.FindPropertyRelative("children");
+			SerializedProperty endDelayProp = item.FindPropertyRelative("endDelay");
+			SerializedProperty repeatCountProp = item.FindPropertyRelative("repeatCount");
+
 			rect.y += 2;
 
-			EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width - 30, EditorGUIUtility.singleLineHeight), element, GUIContent.none);
+			float halfWidth = rect.width / 2;
+			Rect isGroupRect = new Rect(rect.x, rect.y, halfWidth - 10, EditorGUIUtility.singleLineHeight);
+			EditorGUI.PropertyField(isGroupRect, isGroupProp, new GUIContent("Is Group"));
+
+			Rect endDelayRect = new Rect(rect.x + halfWidth, rect.y, halfWidth - 10, EditorGUIUtility.singleLineHeight);
+			EditorGUI.PropertyField(endDelayRect, endDelayProp, new GUIContent("End Delay"));
+
+			rect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+			// Draw repeat count
+			EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), repeatCountProp, new GUIContent("Repeat Count"));
+			rect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+
+			if (isGroupProp.boolValue)
+			{
+				// Draw the children list
+				EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUI.GetPropertyHeight(childrenProp, true)), childrenProp, new GUIContent("Children"), true);
+			}
+			else
+			{
+				EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), prefabProp, new GUIContent("Prefab"));
+			}
 		};
 
-		waveElementsList.drawHeaderCallback = (Rect rect) =>
+
+		rootWaveItemsList.elementHeightCallback = (index) =>
 		{
-			EditorGUI.LabelField(rect, "Wave Elements");
+			SerializedProperty item = rootWaveItemsList.serializedProperty.GetArrayElementAtIndex(index);
+			SerializedProperty isGroupProp = item.FindPropertyRelative("isGroup");
+			SerializedProperty childrenProp = item.FindPropertyRelative("children");
+
+			float baseHeight = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+			float propertyHeight = baseHeight;
+
+			propertyHeight += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing; // repeat height
+
+			// Check if it's a group, add the height of the children property.
+			if (isGroupProp.boolValue)
+			{
+				propertyHeight += EditorGUI.GetPropertyHeight(childrenProp, true) + EditorGUIUtility.standardVerticalSpacing;
+			}
+			// If not a group, just consider the prefab property.
+			else
+			{
+				SerializedProperty prefabProp = item.FindPropertyRelative("prefab");
+				propertyHeight += EditorGUI.GetPropertyHeight(prefabProp, true) + EditorGUIUtility.standardVerticalSpacing;
+			}
+			return propertyHeight;
 		};
 
-		waveElementsList.onSelectCallback = (ReorderableList list) =>
+
+		rootWaveItemsList.drawElementBackgroundCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
 		{
-			selectedWaveElementsProp.objectReferenceValue = waveElementsProp.GetArrayElementAtIndex(list.index).objectReferenceValue;
+			if (isActive)
+				GUI.Box(rect, "");
+		};
+
+		rootWaveItemsList.onAddCallback = (ReorderableList list) =>
+		{
+			var index = list.serializedProperty.arraySize;
+			list.serializedProperty.arraySize++;
+			list.index = index;
+		};
+
+		rootWaveItemsList.onRemoveCallback = (ReorderableList list) =>
+		{
+			if (list.index > -1)
+				list.serializedProperty.DeleteArrayElementAtIndex(list.index);
+			list.index = list.index - 1;
 		};
 	}
+
 
 	public override void OnInspectorGUI()
 	{
 		serializedObject.Update();
 
-		waveElementsList.DoLayoutList();
-
-		EditorGUILayout.PropertyField(serializedObject.FindProperty("endDelay"));
+		rootWaveItemsList.DoLayoutList();
 
 		serializedObject.ApplyModifiedProperties();
 	}
 }
+
+
+
+#endif
