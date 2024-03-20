@@ -1623,7 +1623,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
-  currentWave: {fileID: 0}
   path: {fileID: 128426777}
   onWaveComplete:
     m_PersistentCalls:
