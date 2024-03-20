@@ -93,8 +93,11 @@ public class WaveSpawner : MonoBehaviour
 
 	private IEnumerator CheckForRemainingEnemies()
 	{
-		yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0); // Wait until all enemies are cleared
-		onWaveComplete.Invoke(); // Notify that the wave is complete, enabling UI for next wave
+		Debug.Log("Checking for remaining enemies...");
+		yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
+		Debug.Log("No remaining enemies found, invoking onWaveComplete.");
+		onWaveComplete.Invoke();
+		waveCoroutine = null;
 	}
 
 	public void StopWave()
