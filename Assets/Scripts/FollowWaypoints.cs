@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Mirror;
 using UnityEngine;
 
-public class FollowWaypoints : MonoBehaviour
+public class FollowWaypoints : NetworkBehaviour
 {
 	public GameObject path;
 	int currentWP = 0;

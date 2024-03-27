@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WaveSpawner : MonoBehaviour
+public class WaveSpawner : NetworkBehaviour
 {
 	public Transform spawnPoint;
 	public GameObject path;
@@ -21,6 +22,7 @@ public class WaveSpawner : MonoBehaviour
 		spawnOrigin = spawnPoint.position;
 	}
 
+    [Command(requiresAuthority = false)]
 	public void StartNextWave()
 	{
 		// Check if there are still enemies left before starting the next wave
@@ -88,6 +90,7 @@ public class WaveSpawner : MonoBehaviour
 	{
 		GameObject enemy = Instantiate(prefab, spawnOrigin, Quaternion.identity);
 		enemy.GetComponent<FollowWaypoints>().path = path;
+        NetworkServer.Spawn(enemy);
 		yield return new WaitForSeconds(endDelay);
 	}
 

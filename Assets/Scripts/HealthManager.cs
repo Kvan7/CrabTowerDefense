@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using TMPro;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+public class HealthManager : NetworkBehaviour
 {
     [SerializeField] private TMP_Text textMesh; //Reference to damage text
     private Color textColor; //Change the alpha to fade out
+
+    [SyncVar(hook = nameof(OnCurrentHealthChanged))]
     int health = 100;
 
     void Start()
@@ -16,6 +19,8 @@ public class HealthManager : MonoBehaviour
 
     public void ScoreTakeDamage(int amount)
     {
+        int oldHealth = health;
+
         if (health - amount < 0)
         {
             health = 0;
@@ -25,7 +30,7 @@ public class HealthManager : MonoBehaviour
             health -= amount;
         }
         
-        UpdateScoreUI();
+        OnCurrentHealthChanged(oldHealth, health);
     }
 
     void UpdateColor()
@@ -47,5 +52,21 @@ public class HealthManager : MonoBehaviour
         UpdateColor();
         textMesh.color = textColor;
         textMesh.text = "Health: " + health.ToString();
+    }
+
+    private void OnCurrentHealthChanged(int oldHealth, int newHealth)
+    {
+        if (isServer)
+        {
+            RpcUpdateHealth(newHealth);
+        }
+    }
+
+    // Called on clients to update their currentWaveIndex
+    [ClientRpc]
+    private void RpcUpdateHealth(int newHealth)
+    {
+        health = newHealth;
+        UpdateScoreUI();
     }
 }

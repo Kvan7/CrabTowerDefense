@@ -1,6 +1,7 @@
+using Mirror;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : NetworkBehaviour
 {
 	public int health = 100;
 
