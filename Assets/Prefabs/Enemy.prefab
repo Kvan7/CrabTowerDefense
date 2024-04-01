@@ -70,6 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1044a9c84de5b45a56111b63370619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   health: 100
   damageScore: 5
 --- !u!114 &3151447888590203884
@@ -84,6 +87,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f556db155a5b44284612f84a8a4b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   path: {fileID: 0}
   moveSpeed: 4
   rotSpeed: 7
