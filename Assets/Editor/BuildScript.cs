@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BuildScript
 {
@@ -13,12 +14,19 @@ public class BuildScript
         BuildWindowsServer();
     }
 
+    [MenuItem("Build/Build Android Client - Windows Server")]
+    public static void BuildAndroidClientWindowsServer()
+    {
+        BuildAndroidClient();
+        BuildWindowsServer();
+    }
+
     [MenuItem("Build/Build Client (Android APK)")]
     public static void BuildAndroidClient()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] {
-                "Assets/Scenes/WaveFunction.unity",
+                "Assets/Scenes/BasicMultiplayer.unity",
             };
         buildPlayerOptions.locationPathName = "Builds/Android/Client/Client.apk";
         buildPlayerOptions.target = BuildTarget.Android;
@@ -69,13 +77,10 @@ public class BuildScript
 
     [MenuItem("Build/Build Client (Windows)")]
     public static void BuildWindowsClient()
-    {
+    {       
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] {
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Basic/SceneVR-Basic.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Common/SceneVR-Common.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Menu/SceneVR-Menu.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-UnityDemo/SceneVR-UnityDemo.unity"
+                "Assets/Scenes/BasicMultiplayer.unity",
             };
         buildPlayerOptions.locationPathName = "Builds/Windows/Client/Client.exe";
         buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
@@ -99,12 +104,14 @@ public class BuildScript
     [MenuItem("Build/Build Server (Windows)")]
     public static void BuildWindowsServer()
     {
+        // Disable rendering for server builds
+        // var temp_pipeline = GraphicsSettings.renderPipelineAsset;
+
+        // GraphicsSettings.renderPipelineAsset = null;
+
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] {
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Basic/SceneVR-Basic.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Common/SceneVR-Common.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Menu/SceneVR-Menu.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-UnityDemo/SceneVR-UnityDemo.unity"
+                "Assets/Scenes/BasicMultiplayer.unity",
             };
         buildPlayerOptions.locationPathName = "Builds/Windows/Server/Server.exe";
         buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
@@ -113,6 +120,9 @@ public class BuildScript
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
         BuildSummary summary = report.summary;
+
+        // Reset render pipeline asset
+        // GraphicsSettings.renderPipelineAsset = temp_pipeline;
 
         if (summary.result == BuildResult.Succeeded)
         {
