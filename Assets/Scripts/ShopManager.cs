@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : NetworkBehaviour
 {
 
 	public int money = 100; // Start with 100 money
@@ -69,7 +70,8 @@ public class ShopManager : MonoBehaviour
 		if (SpendMoney(item.cost))
 		{
 			// Instantiate tower or apply upgrade
-			Instantiate(item.prefab, spawnPoint.position, Quaternion.identity);
+			GameObject tower = Instantiate(item.prefab, spawnPoint.position, Quaternion.identity);
+			NetworkServer.Spawn(tower);
 		}
 		else
 		{
