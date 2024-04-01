@@ -1,4 +1,5 @@
 using System.Collections;
+using Mirror;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -19,6 +20,7 @@ public class Tower : MonoBehaviour
 	public GameObject lookAtObject; // Assign this in the editor
 
 	private bool _isMoveable = true; // Whether the tower can be moved
+	protected Coroutine shootCoroutine;
 
 	public bool isMoveable
 	{
@@ -43,7 +45,7 @@ public class Tower : MonoBehaviour
 
 	void Start()
 	{
-		StartCoroutine(CheckForEnemies());
+		shootCoroutine = StartCoroutine(CheckForEnemies());
 	}
 
 
@@ -66,7 +68,7 @@ public class Tower : MonoBehaviour
 			lookAtObject.transform.rotation = Quaternion.LookRotation(targetDirection);
 		}
 	}
-	IEnumerator CheckForEnemies()
+	protected IEnumerator CheckForEnemies()
 	{
 		while (true)
 		{
@@ -109,21 +111,15 @@ public class Tower : MonoBehaviour
 
 		if (target != null && !isMoveable)
 		{
-			Shoot();
+			Shoot(projectileSpeed, attackDamage, projectileLifetime);
 		}
 	}
 
 
-	void Shoot()
+	protected void Shoot(float projectileSpeed, float attackDamage, float projectileLifetime)
 	{
 		if (isMoveable)
 		{
-			return;
-		}
-
-		if (target == null)
-		{
-			Debug.LogWarning("Attempted to shoot but no target was set.");
 			return;
 		}
 
@@ -142,9 +138,13 @@ public class Tower : MonoBehaviour
 			return;
 		}
 
+		// Calculate the direction based on the lookAtObject's forward direction
+		Vector3 shootDirection = lookAtObject.transform.forward;
+
 		projectile.TowerSettings(projectileSpeed, attackDamage, projectileLifetime);
-		projectile.Initialize(target.position);
+		projectile.InitializeDirection(shootDirection);
 	}
+
 
 
 

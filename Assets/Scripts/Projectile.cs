@@ -41,6 +41,29 @@ public class Projectile : MonoBehaviour
 		}
 	}
 
+	public void InitializeDirection(Vector3 direction)
+	{
+		if (TryGetComponent<Rigidbody>(out var rb))
+		{
+			// Use the provided direction for the projectile's velocity
+			rb.velocity = direction.normalized * speed;
+
+			rb.useGravity = false;
+			rb.drag = 0;
+
+			// Set the projectile's forward direction to match the direction of travel
+			if (direction != Vector3.zero)
+			{
+				transform.forward = direction.normalized;
+			}
+		}
+		else
+		{
+			Debug.LogWarning("Projectile does not have a Rigidbody component.");
+		}
+	}
+
+
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.collider.TryGetComponent<Enemy>(out var enemy))

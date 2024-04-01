@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : NetworkBehaviour
 {
 
+	[SyncVar(hook = nameof(OnMoneyChanged))]
 	public int money = 100; // Start with 100 money
 	public WaveSpawner waveSpawner;
 	[SerializeField] private TMP_Text moneyText;
@@ -47,9 +49,27 @@ public class ShopManager : MonoBehaviour
 	}
 
 
+	[Command]
+	private void OnMoneyChanged(int oldMoney, int newMoney)
+	{
+		if (isServer)
+		{
+			RpcUpdateAmount(newMoney);
+		}
+	}
+
+	[ClientRpc]
+	private void RpcUpdateAmount(int newMoney)
+	{
+		money = newMoney;
+		UpdateMoneyUI();
+	}
+
 	public void AddMoney(int amount)
 	{
+		int oldMoney = money;
 		money += amount;
+		OnMoneyChanged(oldMoney, money);
 		UpdateMoneyUI();
 	}
 
@@ -57,7 +77,9 @@ public class ShopManager : MonoBehaviour
 	{
 		if (money >= amount)
 		{
+			int oldMoney = money;
 			money -= amount;
+			OnMoneyChanged(oldMoney, money);
 			UpdateMoneyUI();
 			return true; // Purchase successful
 		}
@@ -69,7 +91,8 @@ public class ShopManager : MonoBehaviour
 		if (SpendMoney(item.cost))
 		{
 			// Instantiate tower or apply upgrade
-			Instantiate(item.prefab, spawnPoint.position, Quaternion.identity);
+			GameObject tower = Instantiate(item.prefab, spawnPoint.position, Quaternion.identity);
+			NetworkServer.Spawn(tower);
 		}
 		else
 		{
