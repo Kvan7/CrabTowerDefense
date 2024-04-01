@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class ShopManager : NetworkBehaviour
 {
 
+	[SyncVar(hook = nameof(OnMoneyChanged))]
 	public int money = 100; // Start with 100 money
 	public WaveSpawner waveSpawner;
 	[SerializeField] private TMP_Text moneyText;
@@ -48,9 +49,27 @@ public class ShopManager : NetworkBehaviour
 	}
 
 
+	[Command]
+	private void OnMoneyChanged(int oldMoney, int newMoney)
+	{
+		if (isServer)
+		{
+			RpcUpdateAmount(newMoney);
+		}
+	}
+
+	[ClientRpc]
+	private void RpcUpdateAmount(int newMoney)
+	{
+		money = newMoney;
+		UpdateMoneyUI();
+	}
+
 	public void AddMoney(int amount)
 	{
+		int oldMoney = money;
 		money += amount;
+		OnMoneyChanged(oldMoney, money);
 		UpdateMoneyUI();
 	}
 
@@ -58,7 +77,9 @@ public class ShopManager : NetworkBehaviour
 	{
 		if (money >= amount)
 		{
+			int oldMoney = money;
 			money -= amount;
+			OnMoneyChanged(oldMoney, money);
 			UpdateMoneyUI();
 			return true; // Purchase successful
 		}
