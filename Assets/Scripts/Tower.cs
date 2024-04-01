@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour
 	public GameObject lookAtObject; // Assign this in the editor
 
 	private bool _isMoveable = true; // Whether the tower can be moved
-	private Coroutine shootCoroutine;
+	protected Coroutine shootCoroutine;
 
 	public bool isMoveable
 	{
@@ -68,7 +68,7 @@ public class Tower : MonoBehaviour
 			lookAtObject.transform.rotation = Quaternion.LookRotation(targetDirection);
 		}
 	}
-	IEnumerator CheckForEnemies()
+	protected IEnumerator CheckForEnemies()
 	{
 		while (true)
 		{
@@ -111,12 +111,12 @@ public class Tower : MonoBehaviour
 
 		if (target != null && !isMoveable)
 		{
-			Shoot();
+			Shoot(projectileSpeed, attackDamage, projectileLifetime);
 		}
 	}
 
 
-	protected void Shoot()
+	protected void Shoot(float projectileSpeed, float attackDamage, float projectileLifetime)
 	{
 		if (isMoveable)
 		{
