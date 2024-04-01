@@ -237,6 +237,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 128426778}
     m_Modifications:
+    - target: {fileID: 1908884005235341299, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
+      propertyPath: sceneId
+      value: 3417254025
+      objectReference: {fileID: 0}
     - target: {fileID: 2062308000488501250, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
       propertyPath: m_Name
       value: Waypoint (6)
@@ -299,6 +303,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 128426778}
     m_Modifications:
+    - target: {fileID: 1908884005235341299, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
+      propertyPath: sceneId
+      value: 2813246489
+      objectReference: {fileID: 0}
     - target: {fileID: 2062308000488501250, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
       propertyPath: m_Name
       value: Waypoint
@@ -647,6 +655,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 128426778}
     m_Modifications:
+    - target: {fileID: 1908884005235341299, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
+      propertyPath: sceneId
+      value: 763492483
+      objectReference: {fileID: 0}
     - target: {fileID: 2062308000488501250, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
       propertyPath: m_Name
       value: Waypoint (2)
@@ -1226,6 +1238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a352d1550f858dd48aeb60a369f008fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   textMesh: {fileID: 1669095970}
 --- !u!1 &531739279
 GameObject:
@@ -1607,6 +1622,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 128426778}
     m_Modifications:
+    - target: {fileID: 1908884005235341299, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
+      propertyPath: sceneId
+      value: 155684348
+      objectReference: {fileID: 0}
     - target: {fileID: 2062308000488501250, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
       propertyPath: m_Name
       value: Waypoint (3)
@@ -1669,6 +1688,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 128426778}
     m_Modifications:
+    - target: {fileID: 1908884005235341299, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
+      propertyPath: sceneId
+      value: 2862145628
+      objectReference: {fileID: 0}
     - target: {fileID: 2062308000488501250, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
       propertyPath: m_Name
       value: Waypoint (4)
@@ -2840,6 +2863,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 128426778}
     m_Modifications:
+    - target: {fileID: 1908884005235341299, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
+      propertyPath: sceneId
+      value: 2573387790
+      objectReference: {fileID: 0}
     - target: {fileID: 2062308000488501250, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
       propertyPath: m_Name
       value: Waypoint (5)
@@ -3079,6 +3106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9d29e9fcf23b8469db7bfe5a490389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   spawnPoint: {fileID: 430009599}
   path: {fileID: 128426777}
   onWaveComplete:
@@ -3267,6 +3297,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 128426778}
     m_Modifications:
+    - target: {fileID: 1908884005235341299, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
+      propertyPath: sceneId
+      value: 1762528206
+      objectReference: {fileID: 0}
     - target: {fileID: 2062308000488501250, guid: 0b6f210786fb30d448dd96a4401392ad, type: 3}
       propertyPath: m_Name
       value: Waypoint (1)
