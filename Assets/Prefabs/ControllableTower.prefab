@@ -627,7 +627,7 @@ MonoBehaviour:
   m_SmoothPosition: 0
   m_SmoothPositionAmount: 8
   m_TightenPosition: 0.1
-  m_TrackRotation: 1
+  m_TrackRotation: 0
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 8
   m_TightenRotation: 0.1
@@ -825,6 +825,7 @@ MonoBehaviour:
   lookAtObject: {fileID: 3216857142517122292}
   turretHead: {fileID: 7734807730079553127}
   turretParent: {fileID: 0}
+  handle: {fileID: 5343566809895105582}
   playerControlled: 0
 --- !u!1 &5275641203074286285
 GameObject:
