@@ -240,7 +240,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5011647450865933862}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 2848393819124682296}
   - component: {fileID: 8741236173205645423}
   m_Layer: 7
-  m_Name: Tower 1
+  m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,12 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
-  fireRate: 0.5
-  attackDamage: 50
-  projectileSpeed: 70
-  projectileLifetime: 5
-  attackRange: 2
-  instantRotation: 1
+  towerInfo: {fileID: 11400000, guid: 8c7353057e5a5a14da3981bdaf4a8b46, type: 2}
   rangeIndicator: {fileID: 1722502045267528470}
   lookAtObject: {fileID: 3216857142517122292}
 --- !u!54 &3197809592703383179

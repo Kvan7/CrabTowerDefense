@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogWarning("Projectile does not have a Rigidbody component.");
+			// Debug.LogWarning("Projectile does not have a Rigidbody component.");
 		}
 	}
 
@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogWarning("Projectile does not have a Rigidbody component.");
+			// Debug.LogWarning("Projectile does not have a Rigidbody component.");
 		}
 	}
 
@@ -72,8 +72,8 @@ public class Projectile : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogWarning("Projectile collided with an object that is not an enemy.");
-			Debug.LogWarning($"Object name: {collision.collider.name}");
+			// Debug.LogWarning("Projectile collided with an object that is not an enemy.");
+			// Debug.LogWarning($"Object name: {collision.collider.name}");
 		}
 
 		// Instantiate and play the particle effect at the point of collision

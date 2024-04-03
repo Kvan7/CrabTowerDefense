@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 587e432c558869e48b216f353fb02bd8, type: 3}
-  m_Name: contorlltwoer
+  m_Name: Snipy
   m_EditorClassIdentifier: 
-  itemName: Controll twoer
-  cost: 5
-  prefab: {fileID: 3882760073860709499, guid: f9c16b88e707fb941872d27ef4fd9f2a, type: 3}
+  itemName: Sniper tower
+  cost: 50
+  prefab: {fileID: 3882760073860709499, guid: d586ef2f6946fab4eb13b43a25437e7b, type: 3}

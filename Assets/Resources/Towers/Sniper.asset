@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26bd2c031e67b8e40bc714739f47c32b, type: 3}
-  m_Name: Wave 1
+  m_Script: {fileID: 11500000, guid: 841dd1b2fe3fb6645b78ca9c89c31a69, type: 3}
+  m_Name: Sniper
   m_EditorClassIdentifier: 
-  waveItems:
-  - isGroup: 0
-    enemyData: {fileID: 11400000, guid: 1808e3f61de7abc42b6558cf9820802a, type: 2}
-    children: []
-    endDelay: 1
-    repeatCount: 10
-  endDelay: 0
+  fireRate: 1
+  attackDamage: 50
+  projectileSpeed: 90
+  projectileLifetime: 2
+  attackRange: 2
+  rotationSpeed: 1
+  instantRotation: 1

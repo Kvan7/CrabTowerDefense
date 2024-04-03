@@ -10,11 +10,12 @@ public class ControllableTower : Tower
 	public XRGrabInteractable turretParent;
 	public Transform handle;
 	public bool playerControlled = false;
-	private float offsetAngle;
 	private float initialYawOffset;
 	private float initialPitchOffset;
 
-	void Start()
+	private Coroutine playerShoot;
+
+	protected override void Start()
 	{
 		// Calculate the initial yaw offset
 		Vector3 directionToHandleFlat = handle.position - turretHead.transform.position;
@@ -24,10 +25,10 @@ public class ControllableTower : Tower
 		// Calculate the initial pitch offset
 		Vector3 directionToHandle = handle.position - turretHead.transform.position;
 		initialPitchOffset = Vector3.SignedAngle(directionToHandleFlat.normalized, directionToHandle.normalized, turretHead.transform.right);
-		isMoveable = false;
+		base.Start();
 	}
 
-	void Update()
+	protected override void Update()
 	{
 		if (playerControlled && turretHead.isSelected)
 		{
@@ -47,6 +48,8 @@ public class ControllableTower : Tower
 			// Apply yaw and pitch rotations to the turret base
 			turretBase.rotation = yawRotation * Quaternion.Euler(pitchAngleWithOffset, 0, 0);
 		}
+
+		base.Update();
 	}
 
 
@@ -64,13 +67,13 @@ public class ControllableTower : Tower
 	}
 	public void ActivateControl(ActivateEventArgs args)
 	{
-		shootCoroutine = StartCoroutine(PlayerShoot());
+		playerShoot = StartCoroutine(PlayerShoot());
 	}
 
 	public void DeactivateControl(DeactivateEventArgs args)
 	{
-		StopCoroutine(shootCoroutine);
-		shootCoroutine = null;
+		StopCoroutine(playerShoot);
+		playerShoot = null;
 	}
 
 	IEnumerator PlayerShoot()

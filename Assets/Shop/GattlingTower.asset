@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26bd2c031e67b8e40bc714739f47c32b, type: 3}
-  m_Name: Wave 1
+  m_Script: {fileID: 11500000, guid: 587e432c558869e48b216f353fb02bd8, type: 3}
+  m_Name: GattlingTower
   m_EditorClassIdentifier: 
-  waveItems:
-  - isGroup: 0
-    enemyData: {fileID: 11400000, guid: 1808e3f61de7abc42b6558cf9820802a, type: 2}
-    children: []
-    endDelay: 1
-    repeatCount: 10
-  endDelay: 0
+  itemName: Gattling Tower
+  cost: 50
+  prefab: {fileID: 3882760073860709499, guid: f9c16b88e707fb941872d27ef4fd9f2a, type: 3}

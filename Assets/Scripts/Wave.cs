@@ -15,7 +15,7 @@ public class Wave : ScriptableObject
 	public class WaveItem
 	{
 		public bool isGroup;
-		public GameObject prefab; // Used if isGroup == false
+		public EnemyData enemyData; // Used if isGroup == false
 		public List<WaveItem> children; // Used if isGroup == true
 		public float endDelay;
 		public int repeatCount = 1;
@@ -39,7 +39,7 @@ public class WaveEditor : Editor
 		{
 			SerializedProperty item = rootWaveItemsList.serializedProperty.GetArrayElementAtIndex(index);
 			SerializedProperty isGroupProp = item.FindPropertyRelative("isGroup");
-			SerializedProperty prefabProp = item.FindPropertyRelative("prefab");
+			SerializedProperty enemyDataProp = item.FindPropertyRelative("enemyData");
 			SerializedProperty childrenProp = item.FindPropertyRelative("children");
 			SerializedProperty endDelayProp = item.FindPropertyRelative("endDelay");
 			SerializedProperty repeatCountProp = item.FindPropertyRelative("repeatCount");
@@ -65,7 +65,7 @@ public class WaveEditor : Editor
 			}
 			else
 			{
-				EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), prefabProp, new GUIContent("Prefab"));
+				EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), enemyDataProp, new GUIContent("Enemy"));
 			}
 		};
 
@@ -89,8 +89,8 @@ public class WaveEditor : Editor
 			// If not a group, just consider the prefab property.
 			else
 			{
-				SerializedProperty prefabProp = item.FindPropertyRelative("prefab");
-				propertyHeight += EditorGUI.GetPropertyHeight(prefabProp, true) + EditorGUIUtility.standardVerticalSpacing;
+				SerializedProperty enemyDataProp = item.FindPropertyRelative("enemyData");
+				propertyHeight += EditorGUI.GetPropertyHeight(enemyDataProp, true) + EditorGUIUtility.standardVerticalSpacing;
 			}
 			return propertyHeight;
 		};

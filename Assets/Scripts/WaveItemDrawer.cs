@@ -44,7 +44,7 @@ public class WaveItemDrawer : PropertyDrawer
 		{
 			// Draw the prefab field
 			EditorGUI.PropertyField(new Rect(position.x, y, position.width, singleLineHeight),
-									property.FindPropertyRelative("prefab"));
+									property.FindPropertyRelative("enemyData"));
 		}
 
 		EditorGUI.EndProperty();

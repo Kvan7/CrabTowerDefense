@@ -75,6 +75,7 @@ MonoBehaviour:
   syncInterval: 0
   health: 100
   damageScore: 5
+  enemyData: {fileID: 11400000, guid: 1808e3f61de7abc42b6558cf9820802a, type: 2}
 --- !u!114 &3151447888590203884
 MonoBehaviour:
   m_ObjectHideFlags: 0

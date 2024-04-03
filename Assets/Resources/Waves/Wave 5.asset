@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587e432c558869e48b216f353fb02bd8, type: 3}
-  m_Name: gtower2
+  m_Script: {fileID: 11500000, guid: 26bd2c031e67b8e40bc714739f47c32b, type: 3}
+  m_Name: Wave 5
   m_EditorClassIdentifier: 
-  itemName: tower 2
-  cost: 50
-  prefab: {fileID: 3882760073860709499, guid: d586ef2f6946fab4eb13b43a25437e7b, type: 3}
+  waveItems:
+  - isGroup: 0
+    enemyData: {fileID: 11400000, guid: 47ba981569ae7ef408f3fcb550348f15, type: 2}
+    children: []
+    endDelay: 0
+    repeatCount: 0
+  endDelay: 0

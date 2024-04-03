@@ -5,17 +5,18 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
 	public GameObject projectilePrefab;
+	public TowerInfo towerInfo;
 	#region Tower Props
 	// Move to scriptable object later
-	public float fireRate = 1f;
-	public float attackDamage = 50f;
-	public float projectileSpeed = 10f;
-	public float projectileLifetime = 5f;
-	[SerializeField] private float attackRange = 10f; // The range within which to look for enemies
+	protected float fireRate = 1f;
+	protected float attackDamage = 50f;
+	protected float projectileSpeed = 10f;
+	protected float projectileLifetime = 5f;
+	protected float attackRange = 10f; // The range within which to look for enemies
+	protected float rotationSpeed = 1f;
+	protected bool instantRotation = false;
 	#endregion
 	private Transform target;
-	private float rotationSpeed = 1f;
-	public bool instantRotation = false;
 	public GameObject rangeIndicator; // Assign this in the editor
 	public GameObject lookAtObject; // Assign this in the editor
 
@@ -43,13 +44,23 @@ public class Tower : MonoBehaviour
 		}
 	}
 
-	void Start()
+	protected virtual void Start()
 	{
+		if (towerInfo != null)
+		{
+			fireRate = towerInfo.fireRate;
+			attackDamage = towerInfo.attackDamage;
+			projectileSpeed = towerInfo.projectileSpeed;
+			projectileLifetime = towerInfo.projectileLifetime;
+			attackRange = towerInfo.attackRange;
+			rotationSpeed = towerInfo.rotationSpeed;
+			instantRotation = towerInfo.instantRotation;
+		}
 		shootCoroutine = StartCoroutine(CheckForEnemies());
 	}
 
 
-	void Update()
+	protected virtual void Update()
 	{
 		if (target == null)
 			return;

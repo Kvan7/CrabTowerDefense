@@ -22,7 +22,7 @@ public class WaveSpawner : NetworkBehaviour
 		spawnOrigin = spawnPoint.position;
 	}
 
-    [Command(requiresAuthority = false)]
+	[Command(requiresAuthority = false)]
 	public void StartNextWave()
 	{
 		// Check if there are still enemies left before starting the next wave
@@ -75,7 +75,7 @@ public class WaveSpawner : NetworkBehaviour
 				}
 				else
 				{
-					yield return SpawnEnemy(item.prefab.gameObject, item.endDelay);
+					yield return SpawnEnemy(item.enemyData.prefab.gameObject, item.endDelay);
 				}
 			}
 		}
@@ -90,7 +90,8 @@ public class WaveSpawner : NetworkBehaviour
 	{
 		GameObject enemy = Instantiate(prefab, spawnOrigin, Quaternion.identity);
 		enemy.GetComponent<FollowWaypoints>().path = path;
-        NetworkServer.Spawn(enemy);
+		NetworkServer.Spawn(enemy);
+		Debug.Log(enemy.GetComponent<Enemy>().health);
 		yield return new WaitForSeconds(endDelay);
 	}
 
