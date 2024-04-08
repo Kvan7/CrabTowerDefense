@@ -9844,7 +9844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
       propertyPath: spawnPrefabs.Array.data[3]
@@ -9858,6 +9858,26 @@ PrefabInstance:
       propertyPath: spawnPrefabs.Array.data[5]
       value: 
       objectReference: {fileID: 3882760073860709499, guid: d586ef2f6946fab4eb13b43a25437e7b, type: 3}
+    - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
+      propertyPath: spawnPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 3882760073860709499, guid: f9c16b88e707fb941872d27ef4fd9f2a, type: 3}
+    - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
+      propertyPath: spawnPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 4712599190803145313, guid: 9dda2f53a7ee3ac45809ae3e660054b2, type: 3}
+    - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
+      propertyPath: spawnPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
+    - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
+      propertyPath: spawnPrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 8217832075571709004, guid: 16f4e068bb63fcb4687363f9c1d71ab9, type: 3}
+    - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
+      propertyPath: spawnPrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 8217832075571709004, guid: 97630b0fa22ac784382dcd875d9a319c, type: 3}
     - target: {fileID: 1815383773422179066, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -25417,6 +25437,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3010598410607433028, guid: 9dda2f53a7ee3ac45809ae3e660054b2, type: 3}
+      propertyPath: sceneId
+      value: 1125063994
+      objectReference: {fileID: 0}
     - target: {fileID: 4124955351804523559, guid: 9dda2f53a7ee3ac45809ae3e660054b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 151.734
