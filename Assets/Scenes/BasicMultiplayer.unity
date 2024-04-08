@@ -1070,7 +1070,7 @@ PrefabInstance:
       objectReference: {fileID: 1214619348218027191, guid: 3b3643dfb1b722049a31a2764b1bd68a, type: 3}
     - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
       propertyPath: networkAddress
-      value: 172.20.10.11
+      value: localhost
       objectReference: {fileID: 0}
     - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
       propertyPath: spawnPrefabs.Array.size

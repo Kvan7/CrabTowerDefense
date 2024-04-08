@@ -26,7 +26,7 @@ public class BuildScript
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] {
-                "Assets/Scenes/BasicMultiplayer.unity",
+                "Assets/Scenes/MultiplayerBeach.unity",
             };
         buildPlayerOptions.locationPathName = "Builds/Android/Client/Client.apk";
         buildPlayerOptions.target = BuildTarget.Android;
@@ -51,10 +51,7 @@ public class BuildScript
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] {
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Basic/SceneVR-Basic.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Common/SceneVR-Common.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-Menu/SceneVR-Menu.unity",
-                "Assets/MirrorExamplesVR/Scenes/SceneVR-UnityDemo/SceneVR-UnityDemo.unity"
+                "Assets/Scenes/BasicMultiplayer.unity",
             };
         buildPlayerOptions.locationPathName = "Builds/Linux/Server/Server.x86_64";
         buildPlayerOptions.target = BuildTarget.StandaloneLinux64;
@@ -111,7 +108,7 @@ public class BuildScript
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] {
-                "Assets/Scenes/BasicMultiplayer.unity",
+                "Assets/Scenes/MultiplayerBeach.unity",
             };
         buildPlayerOptions.locationPathName = "Builds/Windows/Server/Server.exe";
         buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
