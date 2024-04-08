@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03372896, g: 0.1689906, b: 0.35745245, a: 1}
+  m_IndirectSpecularColor: {r: 0.033695888, g: 0.16941209, b: 0.35558525, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6117,6 +6117,7 @@ Transform:
   m_Children:
   - {fileID: 1640399141}
   - {fileID: 983040505}
+  - {fileID: 730803599}
   m_Father: {fileID: 1273387324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &186955713
@@ -22389,6 +22390,80 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7386850590671906167, guid: d49b2697efcf67f44a2b5e88b243f734, type: 3}
   m_PrefabInstance: {fileID: 724089416}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &730803598
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 186316076}
+    m_Modifications:
+    - target: {fileID: 2543939614625876503, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0029997826
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.72552747
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.403
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7625052994013906579, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: d3445a31df61c134bb4464759e117bfb, type: 2}
+    - target: {fileID: 7625052994013906579, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: shopManager
+      value: 
+      objectReference: {fileID: 1273387323}
+    - target: {fileID: 7772129392545261963, guid: cae32a13389548a4483c0dce94456135, type: 3}
+      propertyPath: m_Name
+      value: Control
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cae32a13389548a4483c0dce94456135, type: 3}
+--- !u!4 &730803599 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6621209288804579113, guid: cae32a13389548a4483c0dce94456135, type: 3}
+  m_PrefabInstance: {fileID: 730803598}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &733178405
 PrefabInstance:
