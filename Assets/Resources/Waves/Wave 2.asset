@@ -21,6 +21,6 @@ MonoBehaviour:
       children: []
       endDelay: 0.5
       repeatCount: 2
-    endDelay: 1
+    endDelay: 2
     repeatCount: 10
   endDelay: 0

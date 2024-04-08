@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DefaultTower
   m_EditorClassIdentifier: 
   itemName: Test Tower
-  cost: 1
+  cost: 0
   prefab: {fileID: 3882760073860709499, guid: 046f8821fbea4f24997503d2287617ba, type: 3}

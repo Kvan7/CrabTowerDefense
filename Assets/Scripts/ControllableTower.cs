@@ -63,16 +63,26 @@ public class ControllableTower : Tower
 	public void UnGrabControl(SelectExitEventArgs args)
 	{
 		playerControlled = false;
+		if (shootCoroutine != null)
+			StopCoroutine(shootCoroutine);
+		if (playerShoot != null)
+		{
+			StopCoroutine(playerShoot);
+			playerShoot = null;
+		}
 		shootCoroutine = StartCoroutine(CheckForEnemies());
 	}
 	public void ActivateControl(ActivateEventArgs args)
 	{
+		if (playerShoot != null)
+			StopCoroutine(playerShoot);
 		playerShoot = StartCoroutine(PlayerShoot());
 	}
 
 	public void DeactivateControl(DeactivateEventArgs args)
 	{
-		StopCoroutine(playerShoot);
+		if (playerShoot != null)
+			StopCoroutine(playerShoot);
 		playerShoot = null;
 	}
 
@@ -81,7 +91,7 @@ public class ControllableTower : Tower
 		while (true)
 		{
 			// BUG: can spam click to shoot quickly
-			Shoot(2 * projectileSpeed, 2 * attackDamage, projectileLifetime);
+			Shoot(projectileSpeed, attackDamage, projectileLifetime);
 			yield return new WaitForSeconds(1 / (3 * fireRate));
 		}
 	}

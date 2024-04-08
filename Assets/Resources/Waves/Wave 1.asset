@@ -16,6 +16,6 @@ MonoBehaviour:
   - isGroup: 0
     enemyData: {fileID: 11400000, guid: 1808e3f61de7abc42b6558cf9820802a, type: 2}
     children: []
-    endDelay: 1
+    endDelay: 2.5
     repeatCount: 10
   endDelay: 0
