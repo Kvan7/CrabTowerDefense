@@ -105,8 +105,8 @@ Material:
     - _SurfaceFoamScale: 4.5
     - _SurfaceFoamScrollSpeed: -0.15
     - _UseIntersectionFoam: 0
-    - _WaveAmplitude: 3.38
-    - _WaveIntensity: 0.03
+    - _WaveAmplitude: 1.06
+    - _WaveIntensity: 0.004
     - _WaveSpeed: 1.2
     - _Waves: 1
     - _XXXXFoamOpacity: -0.091
