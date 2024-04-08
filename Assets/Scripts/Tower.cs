@@ -56,6 +56,7 @@ public class Tower : MonoBehaviour
 			rotationSpeed = towerInfo.rotationSpeed;
 			instantRotation = towerInfo.instantRotation;
 		}
+		UpdateRangeIndicator();
 		shootCoroutine = StartCoroutine(CheckForEnemies());
 	}
 

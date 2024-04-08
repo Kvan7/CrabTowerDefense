@@ -17,5 +17,5 @@ MonoBehaviour:
   projectileSpeed: 70
   projectileLifetime: 2
   attackRange: 0.5
-  rotationSpeed: 1
+  rotationSpeed: 0.25
   instantRotation: 0
