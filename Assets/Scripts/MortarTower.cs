@@ -12,8 +12,6 @@ public class MortarTower : MonoBehaviour
 	[SerializeField] private Transform tube;
 	[SerializeField] private XRKnob rotateWheel;
 	[SerializeField] private XRKnob rangeWheel;
-	[SerializeField] private ParticleSystem explodeParticles;
-	[SerializeField] private ParticleSystem muzzleFlash;
 	[SerializeField] private float fireRate = 0.333f;
 	private Coroutine shootCoroutine;
 	private bool m_automaticFire = false;
@@ -29,12 +27,7 @@ public class MortarTower : MonoBehaviour
 			}
 			if (value)
 			{
-				Debug.Log("Starting shoot coroutine");
 				shootCoroutine = StartCoroutine(ShootCoroutine());
-			}
-			else
-			{
-				Debug.Log("Stopping shoot coroutine");
 			}
 		}
 
@@ -43,7 +36,6 @@ public class MortarTower : MonoBehaviour
 	{
 		while (true)
 		{
-			Debug.Log("Attempting to shoot!");
 			Shoot();
 			yield return new WaitForSeconds(1 / fireRate);
 		}
@@ -51,16 +43,36 @@ public class MortarTower : MonoBehaviour
 
 	public float launchForce = 20.0f;
 	// Start is called before the first frame update
+	public float tuningFactor = 0.825f;
+
 	void Start()
 	{
 		// Set the tower's range indicator to the attack range
 		rangeWheel.onValueChange.AddListener((value) =>
 		{
-			// Keep the tube rotation as it is
-			tube.localRotation = Quaternion.Euler(value * 30, 0, 0);
+			float angleDegrees = value * 30 + 0.5f;
+			tube.localRotation = Quaternion.Euler(angleDegrees, 0, 0);
 
-			// Use the scaledValue for the targetZone.position
-			targetZone.localPosition = new Vector3(0, 0, value * 37 + 3);
+			// Convert angle to radians for calculations
+			float launchAngleRad = angleDegrees * Mathf.Deg2Rad;
+			float g = Mathf.Abs(Physics.gravity.y);
+
+			// Vertical component of the launch velocity
+			float Vv = launchForce * Mathf.Sin(launchAngleRad);
+
+			// Time of flight (up and down)
+			float timeOfFlight = 2 * Vv / g;
+
+			// Horizontal component of the launch velocity
+			float Vh = launchForce * Mathf.Cos(launchAngleRad);
+
+			// Horizontal distance
+			float horizontalDistance = Vh * timeOfFlight;
+
+			horizontalDistance *= tuningFactor;
+
+			// Set the targetZone position based on the calculated horizontal distance
+			targetZone.localPosition = new Vector3(0, 0, horizontalDistance);
 		});
 
 		// Set the tower's rotation speed to the rotation speed
@@ -68,6 +80,9 @@ public class MortarTower : MonoBehaviour
 		{
 			rotatingObjectParent.localRotation = Quaternion.Euler(0, value * 360 / 2, 0);
 		});
+
+		// Set the tower's target area radius to the attack range
+		targetZone.localScale = new Vector3(towerInfo.attackRange * 2, targetZone.localScale.y * towerInfo.attackRange, towerInfo.attackRange * 2);
 	}
 	private void OnDestroy()
 	{
@@ -82,36 +97,16 @@ public class MortarTower : MonoBehaviour
 
 	void Shoot()
 	{
-		Debug.Log("Shoot");
-		Vector3 toTarget = targetZone.position - tube.position;
-		float distance = toTarget.magnitude;
-		float g = Mathf.Abs(Physics.gravity.y);
+		// Instantiate the projectile at the tube's position and orientation
+		GameObject projectile = Instantiate(projectilePrefab, tube.position, Quaternion.identity);
+		Rigidbody rb = projectile.GetComponent<Rigidbody>();
+		Shell shell = projectile.GetComponent<Shell>();
+		shell.explodeRadius = towerInfo.attackRange;
 
-		// Horizontal distance
-		float x = distance;
-		// Vertical distance
-		float y = toTarget.y;
+		// Apply the force in the tube's upward direction
+		Vector3 force = tube.up * launchForce;
 
-		// Calculate launch angle in radians
-		float angle = Mathf.Asin(g * x / (launchForce * launchForce)) / 2.0f;
-
-		// If the angle is a valid number, proceed
-		if (!float.IsNaN(angle))
-		{
-			Debug.Log("Firing solution found! Angle: " + angle * Mathf.Rad2Deg + " degrees.");
-			GameObject projectile = Instantiate(projectilePrefab, tube.position, Quaternion.identity);
-			Rigidbody rb = projectile.GetComponent<Rigidbody>();
-
-			// Decompose the launch force into horizontal and vertical components
-			Vector3 launchDirection = (toTarget.normalized * Mathf.Cos(angle)) + (Vector3.up * Mathf.Sin(angle));
-			Vector3 force = launchDirection * launchForce;
-
-			// Apply the force to the projectile
-			rb.AddForce(force, ForceMode.Impulse);
-		}
-		else
-		{
-			Debug.LogError("No valid firing solution for this target!");
-		}
+		// Apply the force to the projectile
+		rb.AddForce(force, ForceMode.Impulse);
 	}
 }
