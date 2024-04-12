@@ -20,8 +20,8 @@ public class ShellEffectHandler : MonoBehaviour
 	{
 		if (explosionEffect != null)
 		{
-			GameObject particle = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-			particle.transform.localScale = new Vector3(0.05f * explodeRadius, 0.05f * explodeRadius, 0.05f * explodeRadius);
+			GameObject particle = Instantiate(explosionEffect, transform.position + new Vector3(0, 1.0f, 0), Quaternion.identity);
+			particle.transform.localScale = new Vector3(explodeRadius, explodeRadius, explodeRadius);
 			Destroy(particle, 7f);
 		}
 	}

@@ -12,7 +12,10 @@ public class MortarTower : MonoBehaviour
 	[SerializeField] private Transform tube;
 	[SerializeField] private XRKnob rotateWheel;
 	[SerializeField] private XRKnob rangeWheel;
+	[SerializeField] private float range = 0.333f;
 	[SerializeField] private float fireRate = 0.333f;
+	[SerializeField] private float damage = 10;
+
 	private Coroutine shootCoroutine;
 	private bool m_automaticFire = false;
 	public bool automaticFire
@@ -43,47 +46,63 @@ public class MortarTower : MonoBehaviour
 
 	public float launchForce = 20.0f;
 	// Start is called before the first frame update
-	public float tuningFactor = 0.825f;
-
 	void Start()
 	{
+		if (towerInfo)
+		{
+			fireRate = towerInfo.fireRate;
+			damage = towerInfo.attackDamage;
+			range = towerInfo.attackRange;
+
+		}
 		// Set the tower's range indicator to the attack range
 		rangeWheel.onValueChange.AddListener((value) =>
 		{
-			float angleDegrees = value * 30 + 0.5f;
-			tube.localRotation = Quaternion.Euler(angleDegrees, 0, 0);
-
-			// Convert angle to radians for calculations
-			float launchAngleRad = angleDegrees * Mathf.Deg2Rad;
-			float g = Mathf.Abs(Physics.gravity.y);
-
-			// Vertical component of the launch velocity
-			float Vv = launchForce * Mathf.Sin(launchAngleRad);
-
-			// Time of flight (up and down)
-			float timeOfFlight = 2 * Vv / g;
-
-			// Horizontal component of the launch velocity
-			float Vh = launchForce * Mathf.Cos(launchAngleRad);
-
-			// Horizontal distance
-			float horizontalDistance = Vh * timeOfFlight;
-
-			horizontalDistance *= tuningFactor;
-
-			// Set the targetZone position based on the calculated horizontal distance
-			targetZone.localPosition = new Vector3(0, 0, horizontalDistance);
+			OnRangeChange(value);
 		});
 
 		// Set the tower's rotation speed to the rotation speed
 		rotateWheel.onValueChange.AddListener((value) =>
 		{
-			rotatingObjectParent.localRotation = Quaternion.Euler(0, value * 360 / 2, 0);
+			OnRotateChange(value);
 		});
+		OnRangeChange(rangeWheel.value);
+		OnRotateChange(rotateWheel.value);
 
 		// Set the tower's target area radius to the attack range
 		targetZone.localScale = new Vector3(towerInfo.attackRange * 2, targetZone.localScale.y * towerInfo.attackRange, towerInfo.attackRange * 2);
 	}
+
+	private void OnRangeChange(float value)
+	{
+		float angleDegrees = value * 30 + 3.0f;
+		tube.localRotation = Quaternion.Euler(angleDegrees, 0, 0);
+
+		// Convert angle to radians for calculations
+		float launchAngleRad = angleDegrees * Mathf.Deg2Rad;
+		float g = Mathf.Abs(Physics.gravity.y);
+
+		// Vertical component of the launch velocity
+		float Vv = launchForce * Mathf.Sin(launchAngleRad);
+
+		// Time of flight (up and down)
+		float timeOfFlight = 2 * Vv / g;
+
+		// Horizontal component of the launch velocity
+		float Vh = launchForce * Mathf.Cos(launchAngleRad);
+
+		// Horizontal distance
+		float horizontalDistance = Vh * timeOfFlight;
+
+		// Set the targetZone position based on the calculated horizontal distance
+		targetZone.localPosition = new Vector3(0, 0, horizontalDistance);
+	}
+
+	private void OnRotateChange(float value)
+	{
+		rotatingObjectParent.localRotation = Quaternion.Euler(0, value * 36, 0);
+	}
+
 	private void OnDestroy()
 	{
 		rangeWheel.onValueChange.RemoveAllListeners();
@@ -102,6 +121,7 @@ public class MortarTower : MonoBehaviour
 		Rigidbody rb = projectile.GetComponent<Rigidbody>();
 		Shell shell = projectile.GetComponent<Shell>();
 		shell.explodeRadius = towerInfo.attackRange;
+		shell.damage = damage;
 
 		// Apply the force in the tube's upward direction
 		Vector3 force = tube.up * launchForce;

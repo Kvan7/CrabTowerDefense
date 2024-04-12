@@ -6,6 +6,7 @@ public class Shell : MonoBehaviour
 {
 	Rigidbody rb;
 	public float explodeRadius = 5f;
+	public float damage = 10f;
 
 	void Start()
 	{
@@ -29,7 +30,6 @@ public class Shell : MonoBehaviour
 
 	public void Explode()
 	{
-		Debug.Log("Shell exploded!");
 		// Get all colliders within the explodeRadius
 		Collider[] colliders = Physics.OverlapSphere(transform.position, explodeRadius);
 
@@ -41,7 +41,7 @@ public class Shell : MonoBehaviour
 				Enemy enemy = collider.gameObject.GetComponent<Enemy>();
 
 				// Deal damage to the enemy
-				enemy.TakeDamage(10);
+				enemy.TakeDamage((int)damage);
 			}
 		}
 
