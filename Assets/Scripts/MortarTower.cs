@@ -12,7 +12,7 @@ public class MortarTower : MonoBehaviour
 	[SerializeField] private Transform tube;
 	[SerializeField] private XRKnob rotateWheel;
 	[SerializeField] private XRKnob rangeWheel;
-	[SerializeField] private float range = 0.333f;
+	[SerializeField] private float range = 4.0f;
 	[SerializeField] private float fireRate = 0.333f;
 	[SerializeField] private float damage = 10;
 
@@ -53,7 +53,6 @@ public class MortarTower : MonoBehaviour
 			fireRate = towerInfo.fireRate;
 			damage = towerInfo.attackDamage;
 			range = towerInfo.attackRange;
-
 		}
 		// Set the tower's range indicator to the attack range
 		rangeWheel.onValueChange.AddListener((value) =>
@@ -108,19 +107,13 @@ public class MortarTower : MonoBehaviour
 		rangeWheel.onValueChange.RemoveAllListeners();
 		rotateWheel.onValueChange.RemoveAllListeners();
 	}
-
-	// Update is called once per frame
-	void Update()
-	{
-	}
-
-	void Shoot()
+	public void Shoot()
 	{
 		// Instantiate the projectile at the tube's position and orientation
 		GameObject projectile = Instantiate(projectilePrefab, tube.position, Quaternion.identity);
 		Rigidbody rb = projectile.GetComponent<Rigidbody>();
 		Shell shell = projectile.GetComponent<Shell>();
-		shell.explodeRadius = towerInfo.attackRange;
+		shell.explodeRadius = range;
 		shell.damage = damage;
 
 		// Apply the force in the tube's upward direction
