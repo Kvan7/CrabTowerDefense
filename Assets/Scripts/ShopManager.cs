@@ -48,8 +48,6 @@ public class ShopManager : NetworkBehaviour
 		moneyText.text = "Money: " + money.ToString();
 	}
 
-
-	[Command]
 	private void OnMoneyChanged(int oldMoney, int newMoney)
 	{
 		if (isServer)
