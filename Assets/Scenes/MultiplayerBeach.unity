@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.033695888, g: 0.16941209, b: 0.35558525, a: 1}
+  m_IndirectSpecularColor: {r: 0.03372896, g: 0.1689906, b: 0.35745245, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12345,6 +12345,14 @@ PrefabInstance:
       propertyPath: vrCanvasHUD
       value: 
       objectReference: {fileID: 1573749344}
+    - target: {fileID: -291422643447462409, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
+      propertyPath: OnServerFound.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -291422643447462409, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
+      propertyPath: OnServerFound.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1815383773422179063, guid: d3f7cb26fb8614984bff2f8d34044e00, type: 3}
       propertyPath: vrCanvasHUD
       value: 

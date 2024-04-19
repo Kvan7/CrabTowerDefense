@@ -1,8 +1,9 @@
 using System.Collections;
 using Mirror;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class Tower : MonoBehaviour
+public class Tower : NetworkBehaviour
 {
 	public GameObject projectilePrefab;
 	public TowerInfo towerInfo;
@@ -23,6 +24,7 @@ public class Tower : MonoBehaviour
 	private bool _isMoveable = true; // Whether the tower can be moved
 	protected Coroutine shootCoroutine;
 
+	public VRCustomNetworkPlayerScript vrCustomNetworkPlayerScript;
 	public bool isMoveable
 	{
 		get { return _isMoveable; }
