@@ -1,8 +1,9 @@
 using System.Collections;
 using Mirror;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class Tower : MonoBehaviour
+public class Tower : NetworkBehaviour
 {
 	public GameObject projectilePrefab;
 	public TowerInfo towerInfo;
@@ -20,9 +21,12 @@ public class Tower : MonoBehaviour
 	public GameObject rangeIndicator; // Assign this in the editor
 	public GameObject lookAtObject; // Assign this in the editor
 
+	[SyncVar(hook = nameof(OnIsMoveableChanged))]
 	private bool _isMoveable = true; // Whether the tower can be moved
 	protected Coroutine shootCoroutine;
 
+	public VRCustomNetworkPlayerScript vrCustomNetworkPlayerScript;
+	
 	public bool isMoveable
 	{
 		get { return _isMoveable; }
@@ -34,12 +38,14 @@ public class Tower : MonoBehaviour
 				target = null;
 				_isMoveable = value;
 				gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+				OnIsMoveableChanged(!_isMoveable, _isMoveable);
 			}
 			else
 			{
 				// If the tower is now not moveable, start shooting
 				_isMoveable = value;
 				gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+				OnIsMoveableChanged(!_isMoveable, _isMoveable);
 			}
 		}
 	}
@@ -176,5 +182,21 @@ public class Tower : MonoBehaviour
 	void OnValidate()
 	{
 		UpdateRangeIndicator();
+	}
+
+	[Command(requiresAuthority = false)]
+	private void OnIsMoveableChanged(bool oldIsMoveable, bool newIsMoveable)
+	{
+		if (isServer)
+		{
+			_isMoveable = newIsMoveable;
+			RpcUpdateIsMoveable(newIsMoveable);
+		}
+	}
+
+	[ClientRpc]
+	private void RpcUpdateIsMoveable(bool newIsMoveable)
+	{
+		_isMoveable = newIsMoveable;
 	}
 }
