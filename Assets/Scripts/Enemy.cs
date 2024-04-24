@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : NetworkBehaviour
 {
+	[SyncVar(hook = nameof(OnCurrentHealthChanged))]
 	public int health = 100;
 
 	private int damageScore = 5;
@@ -32,24 +33,43 @@ public class Enemy : NetworkBehaviour
 
 	public void TakeDamage(int damage)
 	{
+		int oldHealth = health;
 		health -= damage;
-		if (health <= 0)
+		OnCurrentHealthChanged(oldHealth, health);
+	}
+
+	private void OnCurrentHealthChanged(int oldHealth, int newHealth)
+	{
+		if (isServer)
 		{
-			Die();
+			RpcUpdateHealth(newHealth);
+			if (newHealth <= 0)
+			{
+				Die();
+			}
 		}
+	}
+
+	[ClientRpc]
+	private void RpcUpdateHealth(int newHealth)
+	{
+		health = newHealth;
 	}
 
 	void Die()
 	{
-		// give money to player
-		FindObjectOfType<ShopManager>().AddMoney(deathMoney);
-		// destroy enemy
-		Destroy(gameObject);
+		if (isServer)
+		{
+			// give money to player
+			FindObjectOfType<ShopManager>().AddMoney(deathMoney);
+			// destroy enemy
+			NetworkServer.Destroy(gameObject);
+		}
 	}
 
 	public void CompletedPath()
 	{
 		GameObject.Find("HealthManager").GetComponent<HealthManager>().ScoreTakeDamage(damageScore);
-		Destroy(gameObject);
+		NetworkServer.Destroy(gameObject);
 	}
 }
