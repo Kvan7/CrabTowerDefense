@@ -19,6 +19,7 @@ public class Tower : MonoBehaviour
 	private Transform target;
 	public GameObject rangeIndicator; // Assign this in the editor
 	public GameObject lookAtObject; // Assign this in the editor
+	public Transform projectileSpawnPoint; // Assign this in the editor
 
 	private bool _isMoveable = true; // Whether the tower can be moved
 	protected Coroutine shootCoroutine;
@@ -135,7 +136,7 @@ public class Tower : MonoBehaviour
 			return;
 		}
 
-		GameObject projectileObject = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+		GameObject projectileObject = Instantiate(projectilePrefab, projectileSpawnPoint != null ? projectileSpawnPoint.position : transform.position, Quaternion.identity);
 		if (projectileObject == null)
 		{
 			Debug.LogError("Failed to instantiate projectile. Check the projectile prefab.");

@@ -13,17 +13,16 @@ public class ManualMortarHelper : MonoBehaviour
 	public void SelectEntered(SelectEnterEventArgs args)
 	{
 		// Create a fake shell to show the player where the shell will be placed
-		GameObject fakeShellInstance = Instantiate(fakeShell, args.interactableObject.transform.position, bottom.parent.transform.rotation);
+		GameObject fakeShellInstance = Instantiate(fakeShell, manualShellSocket.gameObject.transform.position, bottom.parent.transform.rotation);
 		Destroy(args.interactableObject.transform.gameObject);
 
 		StartCoroutine(MoveShellToTube(fakeShellInstance));
-
 	}
 
 	private IEnumerator MoveShellToTube(GameObject fakeObject)
 	{
 		// Move shell to bottom of tube over about half a second
-		float time = 5.5f;
+		float time = 0.5f;
 		float elapsedTime = 0.0f;
 		Vector3 startPos = fakeObject.transform.position;
 		Vector3 endPos = bottom.position;
