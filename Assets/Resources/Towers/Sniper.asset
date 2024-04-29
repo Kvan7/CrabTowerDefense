@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1
   attackDamage: 50
-  projectileSpeed: 90
+  projectileSpeed: 1
   projectileLifetime: 2
   attackRange: 3
   rotationSpeed: 1

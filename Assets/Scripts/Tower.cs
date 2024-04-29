@@ -20,13 +20,14 @@ public class Tower : NetworkBehaviour
 	private Transform target;
 	public GameObject rangeIndicator; // Assign this in the editor
 	public GameObject lookAtObject; // Assign this in the editor
+	public Transform projectileSpawnPoint; // Assign this in the editor
 
 	[SyncVar(hook = nameof(OnIsMoveableChanged))]
 	private bool _isMoveable = true; // Whether the tower can be moved
 	protected Coroutine shootCoroutine;
 
 	public VRCustomNetworkPlayerScript vrCustomNetworkPlayerScript;
-	
+
 	public bool isMoveable
 	{
 		get { return _isMoveable; }
@@ -141,7 +142,8 @@ public class Tower : NetworkBehaviour
 			return;
 		}
 
-		GameObject projectileObject = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+		GameObject projectileObject = Instantiate(projectilePrefab, projectileSpawnPoint != null ? projectileSpawnPoint.position : transform.position, Quaternion.identity);
+		NetworkServer.Spawn(projectileObject);
 		if (projectileObject == null)
 		{
 			Debug.LogError("Failed to instantiate projectile. Check the projectile prefab.");

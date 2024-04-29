@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 4484000710554879656}
   - component: {fileID: 4469495124610858063}
   - component: {fileID: 5180444219779965056}
+  - component: {fileID: 6024821718507731828}
   m_Layer: 7
   m_Name: Range
   m_TagString: Untagged
@@ -293,6 +294,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6024821718507731828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722502045267528470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 4484000710554879656}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
 --- !u!1 &3216857142517122292
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +405,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 5.45, y: 0.356, z: -2}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -674,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   target: {fileID: 7882202136934151165}
@@ -865,9 +899,16 @@ MonoBehaviour:
   lookAtObject: {fileID: 3216857142517122292}
   vrCustomNetworkPlayerScript: {fileID: 0}
   turretHead: {fileID: 7734807730079553127}
+  yawPivot: {fileID: 7882202136934151165}
+  pitchPivot: {fileID: 7882202136934151165}
   turretParent: {fileID: 1472729003204538837}
   handle: {fileID: 5343566809895105582}
   playerControlled: 0
+  useLimits: 0
+  minYaw: -90
+  maxYaw: 90
+  minPitch: -45
+  maxPitch: 45
 --- !u!54 &2479504326057959230
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1433,7 +1474,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1483,6 +1524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7882202136934151165}
     m_Modifications:
+    - target: {fileID: 3040273629018057853, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 6062635129177533662, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
       propertyPath: m_OnLeverActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

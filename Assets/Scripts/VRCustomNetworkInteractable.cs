@@ -26,11 +26,14 @@ public class VRCustomNetworkInteractable : NetworkBehaviour
 
     public void EventPickup()
     {
+        if (tower.isMoveable == true)
+        {
         //if (isOwned == false)
         //{
             ResetInteractableVelocity();
             CmdPickup(VRStaticVariables.handValue);
         //}
+        }
     }
 
 
@@ -39,7 +42,7 @@ public class VRCustomNetworkInteractable : NetworkBehaviour
         // technically dont need to pass auth when dropping, only remove auth when another player grabs, or current grabber disconnects
         // doing it this way stops jitter when passing auth of moving objects (due to ping difference of positions)
         ///*
-        if (isOwned == true)
+        if (tower.isMoveable == true && isOwned == true)
         {
             //ResetInteractableVelocity();
             if (tower)
