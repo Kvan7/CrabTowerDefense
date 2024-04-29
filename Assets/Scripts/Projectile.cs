@@ -1,7 +1,8 @@
 using UnityEngine;
-using System.Collections; // Required for coroutines
+using System.Collections;
+using Mirror; // Required for coroutines
 
-public class Projectile : MonoBehaviour
+public class Projectile : NetworkBehaviour
 {
 	private float speed = 10f;
 	private float damage = 50f;
@@ -91,7 +92,8 @@ public class Projectile : MonoBehaviour
 			}
 		}
 
-		Destroy(gameObject); // Destroy the projectile upon impact
+		// Destroy(gameObject); // Destroy the projectile upon impact
+		NetworkServer.Destroy(gameObject);
 	}
 
 	IEnumerator DestroyAfterPlay(ParticleSystem ps)

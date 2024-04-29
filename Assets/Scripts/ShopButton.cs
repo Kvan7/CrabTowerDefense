@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Mirror;
 
-public class ShopButton : MonoBehaviour
+public class ShopButton : NetworkBehaviour
 {
 	public ShopItem item;
 	public TMP_Text labelText;
@@ -14,6 +15,7 @@ public class ShopButton : MonoBehaviour
 		labelText.text = item.itemName + '\n' + item.cost.ToString();
 	}
 
+	[Command(requiresAuthority = false)]
 	public void Buy()
 	{
 		FindObjectOfType<ShopManager>().PurchaseItem(item);
