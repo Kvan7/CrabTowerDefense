@@ -142,6 +142,7 @@ public class Tower : NetworkBehaviour
 		}
 
 		GameObject projectileObject = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+		NetworkServer.Spawn(projectileObject);
 		if (projectileObject == null)
 		{
 			Debug.LogError("Failed to instantiate projectile. Check the projectile prefab.");
