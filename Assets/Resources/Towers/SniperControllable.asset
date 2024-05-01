@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 841dd1b2fe3fb6645b78ca9c89c31a69, type: 3}
-  m_Name: Sniper
+  m_Name: SniperControllable
   m_EditorClassIdentifier: 
   fireRate: 1
   attackDamage: 50
-  projectileSpeed: 70
+  projectileSpeed: 1
   projectileLifetime: 20
   attackRange: 3
   rotationSpeed: 1

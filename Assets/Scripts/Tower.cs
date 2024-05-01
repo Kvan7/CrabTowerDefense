@@ -3,7 +3,11 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Tower : NetworkBehaviour
+public abstract class AbstractTower : NetworkBehaviour {
+	public VRCustomNetworkPlayerScript vrCustomNetworkPlayerScript;
+}
+
+public class Tower : AbstractTower
 {
 	public GameObject projectilePrefab;
 	public TowerInfo towerInfo;
@@ -25,9 +29,6 @@ public class Tower : NetworkBehaviour
 	[SyncVar(hook = nameof(OnIsMoveableChanged))]
 	private bool _isMoveable = true; // Whether the tower can be moved
 	protected Coroutine shootCoroutine;
-
-	public VRCustomNetworkPlayerScript vrCustomNetworkPlayerScript;
-
 	public bool isMoveable
 	{
 		get { return _isMoveable; }
@@ -143,7 +144,6 @@ public class Tower : NetworkBehaviour
 		}
 
 		GameObject projectileObject = Instantiate(projectilePrefab, projectileSpawnPoint != null ? projectileSpawnPoint.position : transform.position, Quaternion.identity);
-		NetworkServer.Spawn(projectileObject);
 		if (projectileObject == null)
 		{
 			Debug.LogError("Failed to instantiate projectile. Check the projectile prefab.");
@@ -163,6 +163,7 @@ public class Tower : NetworkBehaviour
 
 		projectile.TowerSettings(projectileSpeed, attackDamage, projectileLifetime);
 		projectile.InitializeDirection(shootDirection);
+		// NetworkServer.Spawn(projectileObject);
 	}
 
 

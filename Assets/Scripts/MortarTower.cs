@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.XR.Content.Interaction;
 
-public class MortarTower : MonoBehaviour
+public class MortarTower : AbstractTower
 {
 	[SerializeField] private Transform targetZone;
 	[SerializeField] private Transform rotatingObjectParent;
@@ -16,7 +17,7 @@ public class MortarTower : MonoBehaviour
 	[SerializeField] private float fireRate = 0.333f;
 	[SerializeField] private float damage = 10;
 
-	private Coroutine shootCoroutine;
+	private Coroutine shootCoroutine;	
 	private bool m_automaticFire = false;
 	public bool automaticFire
 	{
@@ -111,6 +112,7 @@ public class MortarTower : MonoBehaviour
 	{
 		// Instantiate the projectile at the tube's position and orientation
 		GameObject projectile = Instantiate(projectilePrefab, tube.position, Quaternion.identity);
+		NetworkServer.Spawn(projectile);
 		Rigidbody rb = projectile.GetComponent<Rigidbody>();
 		Shell shell = projectile.GetComponent<Shell>();
 		shell.explodeRadius = range;

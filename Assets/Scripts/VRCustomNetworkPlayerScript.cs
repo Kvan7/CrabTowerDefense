@@ -69,7 +69,7 @@ public class VRCustomNetworkPlayerScript : NetworkBehaviour
     [SyncVar(hook = nameof(OnRightObjectChangedHook))]
     public NetworkIdentity rightHandObject;
     // public VRWeapon vrWeaponRight;
-    public Tower towerRight;
+    public AbstractTower towerRight;
 
     void OnRightObjectChangedHook(NetworkIdentity _old, NetworkIdentity _new)
     {
@@ -93,7 +93,7 @@ public class VRCustomNetworkPlayerScript : NetworkBehaviour
     [SyncVar(hook = nameof(OnLeftObjectChangedHook))]
     public NetworkIdentity leftHandObject;
     public VRWeapon vrWeaponLeft;
-    public Tower towerLeft;
+    public AbstractTower towerLeft;
 
     void OnLeftObjectChangedHook(NetworkIdentity _old, NetworkIdentity _new)
     {

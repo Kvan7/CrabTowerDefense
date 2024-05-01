@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841dd1b2fe3fb6645b78ca9c89c31a69, type: 3}
-  m_Name: Sniper
+  m_Script: {fileID: 11500000, guid: 587e432c558869e48b216f353fb02bd8, type: 3}
+  m_Name: SniperControllable
   m_EditorClassIdentifier: 
-  fireRate: 1
-  attackDamage: 50
-  projectileSpeed: 70
-  projectileLifetime: 20
-  attackRange: 3
-  rotationSpeed: 1
-  instantRotation: 1
+  itemName: Controllable Sniper Tower
+  cost: 0
+  prefab: {fileID: 1400955342924745599, guid: 275679600b8fa16488551244d2430855, type: 3}
