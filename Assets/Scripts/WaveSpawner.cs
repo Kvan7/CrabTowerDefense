@@ -8,7 +8,13 @@ public class WaveSpawner : NetworkBehaviour
 {
 	public Transform spawnPoint;
 	public GameObject path;
-	public UnityEvent onWaveComplete;
+
+	public HealthManager healthManager;
+	
+	public UnityEvent onWaveStart =  new UnityEvent();
+	public UnityEvent onWaveComplete = new UnityEvent();
+	public UnityEvent onWaveVictory = new UnityEvent();
+	public UnityEvent onWaveDefeat = new UnityEvent();
 
 	private Vector3 spawnOrigin;
 	private Coroutine waveCoroutine;
@@ -36,7 +42,7 @@ public class WaveSpawner : NetworkBehaviour
 			Debug.LogWarning("Cannot start next wave, wave already in progress.");
 			return;
 		}
-
+		onWaveStart.Invoke();
 		LoadAndStartWave(++currentWaveIndex);
 	}
 
@@ -101,6 +107,14 @@ public class WaveSpawner : NetworkBehaviour
 		yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
 		Debug.Log("No remaining enemies found, invoking onWaveComplete.");
 		onWaveComplete.Invoke();
+		if (healthManager.health == 0)
+		{
+			onWaveDefeat?.Invoke();
+		} 
+		else
+		{
+			onWaveVictory?.Invoke();
+		}
 		waveCoroutine = null;
 	}
 

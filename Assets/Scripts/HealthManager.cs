@@ -10,7 +10,7 @@ public class HealthManager : NetworkBehaviour
     private Color textColor; //Change the alpha to fade out
 
     [SyncVar(hook = nameof(OnCurrentHealthChanged))]
-    int health = 100;
+    public int health = 100;
 
     void Start()
     {
