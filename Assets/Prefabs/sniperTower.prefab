@@ -1212,6 +1212,7 @@ GameObject:
   - component: {fileID: 756277976517508161}
   - component: {fileID: 3586898075720935378}
   - component: {fileID: 577277535768228021}
+  - component: {fileID: 9149766933675536248}
   m_Layer: 7
   m_Name: sniperTower
   m_TagString: Untagged
@@ -1609,6 +1610,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToCreate: {fileID: 5886247021874933572}
   spawnLocation: {fileID: 6192248759638274257}
+--- !u!114 &9149766933675536248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400955342924745599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca9e6bf68decb44ba2462a82ce5cca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toReset:
+  - {fileID: 6329199342307209803}
+  - {fileID: 133548372465103320}
 --- !u!1 &1498726433835682155
 GameObject:
   m_ObjectHideFlags: 0

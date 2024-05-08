@@ -78,6 +78,11 @@ public class Tower : AbstractTower
 		if (isMoveable)
 			return;
 
+		LookAtTarget();
+	}
+
+	protected virtual void LookAtTarget()
+	{
 		Vector3 targetDirection = target.position - transform.position;
 		if (!instantRotation)
 		{
@@ -89,6 +94,7 @@ public class Tower : AbstractTower
 			lookAtObject.transform.rotation = Quaternion.LookRotation(targetDirection);
 		}
 	}
+
 	protected IEnumerator CheckForEnemies()
 	{
 		while (true)

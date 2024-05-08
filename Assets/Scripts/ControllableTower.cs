@@ -41,6 +41,53 @@ public class ControllableTower : Tower
 		base.Update();
 	}
 
+	protected override void LookAtTarget()
+	{
+		if (target == null)
+			return;
+
+		// Calculate direction to target
+		Vector3 targetDirection = target.position - transform.position;
+		targetDirection.y = 0; // Remove vertical component for yaw calculation
+
+		// Calculate yaw rotation to point at target horizontally
+		Quaternion yawRotation = Quaternion.LookRotation(targetDirection);
+		if (!instantRotation)
+		{
+			yawPivot.rotation = Quaternion.Slerp(yawPivot.rotation, yawRotation, Time.deltaTime * rotationSpeed);
+		}
+		else
+		{
+			yawPivot.rotation = yawRotation;
+		}
+
+		// Calculate the pitch rotation to point at target vertically
+		if (pitchPivot != null)
+		{
+			Vector3 relativePos = target.position - pitchPivot.position;
+			relativePos.x = 0;
+			relativePos.z = 0;
+			// float angle = Vector3.SignedAngle(pitchPivot.forward, relativePos, pitchPivot.right);
+
+			// // Clamp angle within pitch limits if useLimits is true
+			// if (useLimits)
+			// {
+			// 	angle = Mathf.Clamp(angle, minPitch, maxPitch);
+			// }
+
+			Quaternion pitchRotation = Quaternion.LookRotation(relativePos);
+
+			if (!instantRotation)
+			{
+				pitchPivot.localRotation = Quaternion.Slerp(pitchPivot.localRotation, pitchRotation, Time.deltaTime * rotationSpeed);
+			}
+			else
+			{
+				pitchPivot.localRotation = pitchRotation;
+			}
+		}
+	}
+
 	protected override void UpdateTarget()
 	{
 		if (!useLimits)

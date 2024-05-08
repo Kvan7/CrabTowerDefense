@@ -1612,7 +1612,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   vrCustomNetworkPlayerScript: {fileID: 0}
-  projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
+  projectilePrefab: {fileID: 6733002936051004049, guid: 4fcd6b87f04197a4d879d438ca8ed358, type: 3}
   towerInfo: {fileID: 11400000, guid: a5ac267d83419724abd08a0399465cc9, type: 2}
   rangeIndicator: {fileID: 1722502045267528470}
   lookAtObject: {fileID: 2163417163971940059}
