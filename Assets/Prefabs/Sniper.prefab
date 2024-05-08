@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2960297491803565351}
   - component: {fileID: 5808947066736352067}
   - component: {fileID: 809909833832831859}
+  - component: {fileID: 5253871396714353302}
   m_Layer: 7
   m_Name: TowerBody
   m_TagString: Untagged
@@ -105,6 +106,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7796912, y: 2, z: 0.85907745}
   m_Center: {x: 0.02642703, y: -0.00000011920929, z: 0.07046127}
+--- !u!114 &5253871396714353302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150179511156041783}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 20144253589324607}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
 --- !u!1 &1365969802637095477
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,12 +337,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722502045267528470}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 4484000710554879656}
@@ -522,14 +556,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16310903646d2754d9bb0996dca6625a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  vrCustomNetworkPlayerScript: {fileID: 0}
   projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
   towerInfo: {fileID: 11400000, guid: 8c7353057e5a5a14da3981bdaf4a8b46, type: 2}
   rangeIndicator: {fileID: 1722502045267528470}
   lookAtObject: {fileID: 3216857142517122292}
-  vrCustomNetworkPlayerScript: {fileID: 0}
+  projectileSpawnPoint: {fileID: 0}
 --- !u!54 &3197809592703383179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -811,7 +846,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  tower: {fileID: 0}
+  tower: {fileID: 3207196837220785927}
   vrCustomNetworkPlayerScript: {fileID: 0}
 --- !u!1 &7968483267137763256
 GameObject:
@@ -1162,7 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
   target: {fileID: 8599741417935313570}

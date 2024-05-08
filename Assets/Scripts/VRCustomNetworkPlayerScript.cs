@@ -78,13 +78,14 @@ public class VRCustomNetworkPlayerScript : NetworkBehaviour
             //Debug.Log("Mirror OnRightObjectChangedHook: " + rightHandObject);
             // vrWeaponRight = rightHandObject.GetComponent<VRWeapon>();
             // vrWeaponRight.vrNetworkPlayerScript = this;
+            towerRight = rightHandObject.GetComponent<AbstractTower>();
             towerRight.vrCustomNetworkPlayerScript = this;
             // vrWeaponRight.SetTextAmmo();
         }
         else
         {
            // vrWeaponRight.vrNetworkPlayerScript = null;
-            towerRight.vrCustomNetworkPlayerScript = null;
+            // towerRight.vrCustomNetworkPlayerScript = null;
             towerRight = null;
             // vrWeaponRight = null;
         }
@@ -102,13 +103,14 @@ public class VRCustomNetworkPlayerScript : NetworkBehaviour
             //Debug.Log("Mirror OnLeftObjectChangedHook: " + leftHandObject);
             // vrWeaponLeft = leftHandObject.GetComponent<VRWeapon>();
             // vrWeaponLeft.vrNetworkPlayerScript = this;
+            towerLeft = leftHandObject.GetComponent<AbstractTower>();
             towerLeft.vrCustomNetworkPlayerScript = this;
             // vrWeaponLeft.SetTextAmmo();
         }
         else
         {
             // vrWeaponRight.vrNetworkPlayerScript = null;
-            towerLeft.vrCustomNetworkPlayerScript = null;
+            // towerLeft.vrCustomNetworkPlayerScript = null;
             towerLeft = null;
             // vrWeaponLeft = null;
         }
