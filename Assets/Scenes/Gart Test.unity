@@ -6348,7 +6348,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1610889255695806746, guid: f9c16b88e707fb941872d27ef4fd9f2a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1649562366625622710, guid: f9c16b88e707fb941872d27ef4fd9f2a, type: 3}
       propertyPath: sceneId
@@ -15886,6 +15886,10 @@ MonoBehaviour:
   syncInterval: 0
   spawnPoint: {fileID: 822806818}
   path: {fileID: 743183643}
+  healthManager: {fileID: 0}
+  onWaveStart:
+    m_PersistentCalls:
+      m_Calls: []
   onWaveComplete:
     m_PersistentCalls:
       m_Calls:
@@ -15901,6 +15905,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onWaveVictory:
+    m_PersistentCalls:
+      m_Calls: []
+  onWaveDefeat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &416409982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45785,6 +45795,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   textMesh: {fileID: 317611289}
+  health: 100
 --- !u!1001 &1196567501
 PrefabInstance:
   m_ObjectHideFlags: 0
