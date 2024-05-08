@@ -202,4 +202,22 @@ public class Tower : AbstractTower
 	{
 		_isMoveable = newIsMoveable;
 	}
+
+	[Command]
+	public void CmdSyncTransform(Vector3 position, Quaternion rotation)
+	{
+		transform.position = position;
+		transform.rotation = rotation;
+		RpcSyncTransform(position, rotation);
+	}
+
+	[ClientRpc]
+	public void RpcSyncTransform(Vector3 position, Quaternion rotation)
+	{
+		if (!isOwned)
+		{
+			transform.position = position;
+			transform.rotation = rotation;
+		}
+	}
 }
