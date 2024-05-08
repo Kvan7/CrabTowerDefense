@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6914101499704351950}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gattlingBarrels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4854540713741919087}
   - component: {fileID: 8916476766029494521}
   - component: {fileID: 8415343937053511365}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: handleMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 59261986151342898}
   - component: {fileID: 5582468961443204136}
   - component: {fileID: 9199769186967409778}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gattingCrank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 618542435071879043}
   - component: {fileID: 4556053496272119846}
   - component: {fileID: 1792060801560419564}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 177328022066728829}
   - component: {fileID: 5111337007794899950}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Feedback Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 1110764541274837553}
   - component: {fileID: 6757518004608933533}
   - component: {fileID: 7903948292996492073}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataHolderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 2214780457942969634}
   - component: {fileID: 5867341578116228814}
   - component: {fileID: 76674634270462972}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataBarrel03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,13 +710,13 @@ GameObject:
   - component: {fileID: 2381626456683573723}
   - component: {fileID: 1465778921177846825}
   - component: {fileID: 5491498547778134520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visual Feedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &985801069199677264
 Transform:
   m_ObjectHideFlags: 0
@@ -1030,7 +1030,7 @@ GameObject:
   - component: {fileID: 6817340499985223763}
   - component: {fileID: 7812821807124191278}
   - component: {fileID: 8770314870526909961}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gattlingMainGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1065,8 +1065,8 @@ Rigidbody:
   m_GameObject: {fileID: 2163417163971940059}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.5
+  m_AngularDrag: 9999
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1098,11 +1098,11 @@ ConfigurableJoint:
   m_ConnectedAnchor: {x: 5.45, y: 1.0654504, z: -2.0014277}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 2
-  m_YMotion: 2
-  m_ZMotion: 2
+  m_XMotion: 0
+  m_YMotion: 0
+  m_ZMotion: 0
   m_AngularXMotion: 1
-  m_AngularYMotion: 0
+  m_AngularYMotion: 2
   m_AngularZMotion: 0
   m_LinearLimitSpring:
     spring: 0
@@ -1174,7 +1174,7 @@ ConfigurableJoint:
     positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
-  m_ProjectionMode: 0
+  m_ProjectionMode: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_ConfiguredInWorldSpace: 0
@@ -1182,7 +1182,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &2917843954123260183
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 9010181585658738032}
   - component: {fileID: 4689705211170083733}
   - component: {fileID: 6926114964248359773}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: handlePlate1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1339,7 +1339,7 @@ GameObject:
   - component: {fileID: 6795973999080425854}
   - component: {fileID: 9129846121414494949}
   - component: {fileID: 3838018830223532977}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gattlingStump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1525,7 +1525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4578515659720384602}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gatlingTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1564,6 +1564,7 @@ GameObject:
   - component: {fileID: 6825690513116306756}
   - component: {fileID: 3706607659891638128}
   - component: {fileID: 4378168538204564539}
+  - component: {fileID: 4455213674707894906}
   m_Layer: 7
   m_Name: GattlingTower
   m_TagString: Untagged
@@ -1719,12 +1720,48 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4455213674707894906}
+        m_TargetAssemblyTypeName: ResetOnDrop, Assembly-CSharp
+        m_MethodName: set_LockToValue
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6825690513116306756}
         m_TargetAssemblyTypeName: VRCustomNetworkInteractable, Assembly-CSharp
         m_MethodName: EventDrop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4455213674707894906}
+        m_TargetAssemblyTypeName: ResetOnDrop, Assembly-CSharp
+        m_MethodName: set_LockToValue
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4455213674707894906}
+        m_TargetAssemblyTypeName: ResetOnDrop, Assembly-CSharp
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1876,7 +1913,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  tower: {fileID: 0}
+  tower: {fileID: 8918898176115824627}
   vrCustomNetworkPlayerScript: {fileID: 0}
 --- !u!114 &3706607659891638128
 MonoBehaviour:
@@ -1927,6 +1964,21 @@ MonoBehaviour:
   rotateWheel: {fileID: 2985922483672977138}
   gattlingTower: {fileID: 8918898176115824627}
   shotsPer360: 7
+--- !u!114 &4455213674707894906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882760073860709499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca9e6bf68decb44ba2462a82ce5cca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toReset:
+  - {fileID: 1379329019459942370}
+  - {fileID: 6817340499985223763}
 --- !u!1 &4239939753006552260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,7 +1990,7 @@ GameObject:
   - component: {fileID: 6858757673251101322}
   - component: {fileID: 5247212251780943550}
   - component: {fileID: 1719379603117202929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataBarrel02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2021,7 +2073,7 @@ GameObject:
   - component: {fileID: 7480897618870272370}
   - component: {fileID: 26094759637194280}
   - component: {fileID: 1194188237019947694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataBarrel07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2108,7 +2160,7 @@ GameObject:
   - component: {fileID: 4516045732235341155}
   - component: {fileID: 4441774747498489117}
   - component: {fileID: 4234962096213447437}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: stumpScrew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2193,8 +2245,8 @@ Rigidbody:
   m_GameObject: {fileID: 4617787308757189542}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.5
+  m_AngularDrag: 9999
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2460,9 +2512,9 @@ ConfigurableJoint:
   m_ConnectedAnchor: {x: 5.45, y: 0.83160007, z: -1.9942433}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 2
-  m_YMotion: 2
-  m_ZMotion: 2
+  m_XMotion: 0
+  m_YMotion: 0
+  m_ZMotion: 0
   m_AngularXMotion: 0
   m_AngularYMotion: 2
   m_AngularZMotion: 0
@@ -2536,7 +2588,7 @@ ConfigurableJoint:
     positionDamper: 0
     maximumForce: 3.4028233e+38
     useAcceleration: 0
-  m_ProjectionMode: 0
+  m_ProjectionMode: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_ConfiguredInWorldSpace: 0
@@ -2544,7 +2596,7 @@ ConfigurableJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &5255736428058980500
@@ -2558,7 +2610,7 @@ GameObject:
   - component: {fileID: 1028628533004505750}
   - component: {fileID: 1706742551445678893}
   - component: {fileID: 2583581252764130612}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataBarrel01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2641,7 +2693,7 @@ GameObject:
   - component: {fileID: 3749796118075542311}
   - component: {fileID: 3265156502212664290}
   - component: {fileID: 2784304659999128988}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataWoodenPlankStand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2724,7 +2776,7 @@ GameObject:
   - component: {fileID: 6840833977656786626}
   - component: {fileID: 7023942310838034548}
   - component: {fileID: 8130558589940633077}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2806,7 +2858,7 @@ GameObject:
   - component: {fileID: 3097325357849884305}
   - component: {fileID: 8331340128728248509}
   - component: {fileID: 6538607897414816735}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataHolderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2890,7 +2942,7 @@ GameObject:
   - component: {fileID: 212723368690686858}
   - component: {fileID: 4671093630815267050}
   - component: {fileID: 4526108314960845840}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: moveCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2994,7 +3046,7 @@ GameObject:
   - component: {fileID: 8377877970885221349}
   - component: {fileID: 8973445887922817675}
   - component: {fileID: 4372201931456146810}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataBarrel05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3129,7 +3181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5284527814331209687}
   - component: {fileID: 2985922483672977138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3277,7 +3329,7 @@ GameObject:
   - component: {fileID: 546767370877816202}
   - component: {fileID: 8250209512855680132}
   - component: {fileID: 8713575406601167183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gattlingBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3358,7 +3410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6638600880681344967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gattlingHande
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3395,7 +3447,7 @@ GameObject:
   - component: {fileID: 1294401562308764895}
   - component: {fileID: 5348800065219989140}
   - component: {fileID: 7480263717888734012}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: handlePlate2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3509,7 +3561,7 @@ GameObject:
   - component: {fileID: 4468307180502777592}
   - component: {fileID: 8550477973630188883}
   - component: {fileID: 2654985088364078811}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio Feedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3675,7 +3727,7 @@ GameObject:
   - component: {fileID: 7106495306085721450}
   - component: {fileID: 5901746450119385409}
   - component: {fileID: 4065374698794739542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataBarrel04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3758,7 +3810,7 @@ GameObject:
   - component: {fileID: 8850517068634716593}
   - component: {fileID: 4149876374474790734}
   - component: {fileID: 2828172525118776684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratataBarrel06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3841,7 +3893,7 @@ GameObject:
   - component: {fileID: 2599871862299293299}
   - component: {fileID: 3635979062326560951}
   - component: {fileID: 135147015028166684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ratatabarrelHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3921,6 +3973,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5011647450865933862}
     m_Modifications:
+    - target: {fileID: 1491973933392533141, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302126049573681405, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2721390221817214047, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3040273629018057853, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
       value: 1024
@@ -4041,9 +4105,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 53.506
       objectReference: {fileID: 0}
+    - target: {fileID: 6201764623534799811, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852583441802702369, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839936228313604079, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8859601305635343420, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
       propertyPath: m_Name
       value: TowerLever
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859601305635343420, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
