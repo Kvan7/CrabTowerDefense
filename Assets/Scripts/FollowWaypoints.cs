@@ -26,6 +26,7 @@ public class FollowWaypoints : NetworkBehaviour
 		{
 			waypoints.Add(child.gameObject);
 		}
+		lastPosition = transform.position;
 	}
 
 	private void Update()
