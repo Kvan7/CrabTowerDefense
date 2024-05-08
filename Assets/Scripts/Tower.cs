@@ -3,7 +3,8 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public abstract class AbstractTower : NetworkBehaviour {
+public abstract class AbstractTower : NetworkBehaviour
+{
 	public VRCustomNetworkPlayerScript vrCustomNetworkPlayerScript;
 }
 
@@ -166,6 +167,10 @@ public class Tower : AbstractTower
 		// NetworkServer.Spawn(projectileObject);
 	}
 
+	public void Shoot()
+	{
+		Shoot(projectileSpeed, attackDamage, projectileLifetime);
+	}
 
 
 

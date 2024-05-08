@@ -19,8 +19,8 @@ public class updateRotate : MonoBehaviour
 	{
 		rotateWheel.onValueChange.RemoveAllListeners();
 	}
-	public void Rot(float value)
+	public virtual void Rot(float value)
 	{
-		toRotate.rotation = Quaternion.Euler(0, 0, 180 * value);
+		toRotate.localRotation = Quaternion.Euler(toRotate.localRotation.x, toRotate.localRotation.y, 720 * value);
 	}
 }
