@@ -22,7 +22,7 @@ public class Tower : AbstractTower
 	protected float rotationSpeed = 1f;
 	protected bool instantRotation = false;
 	#endregion
-	private Transform target;
+	protected Transform target;
 	public GameObject rangeIndicator; // Assign this in the editor
 	public GameObject lookAtObject; // Assign this in the editor
 	public Transform projectileSpawnPoint; // Assign this in the editor
@@ -106,7 +106,7 @@ public class Tower : AbstractTower
 		Gizmos.DrawWireSphere(transform.position, attackRange * gameObject.transform.localScale.x);
 	}
 
-	void UpdateTarget()
+	protected virtual void UpdateTarget()
 	{
 		Collider[] hits = Physics.OverlapSphere(transform.position, attackRange * gameObject.transform.localScale.x);
 		float closestDistance = float.MaxValue;

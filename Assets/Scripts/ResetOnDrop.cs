@@ -24,11 +24,9 @@ public class ResetOnDrop : MonoBehaviour
 
 	public void Reset()
 	{
-		Debug.Log("Resetting");
 		foreach (Transform t in toReset)
 		{
 			t.rotation = Quaternion.identity;
-			Debug.Log("Resetting: " + t.name + " X: " + t.localRotation.x + " Y: " + t.localRotation.y + " Z: " + t.localRotation.z);
 		}
 	}
 }

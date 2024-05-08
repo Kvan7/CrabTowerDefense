@@ -41,6 +41,43 @@ public class ControllableTower : Tower
 		base.Update();
 	}
 
+	protected override void UpdateTarget()
+	{
+		if (!useLimits)
+		{
+			base.UpdateTarget();
+			return;
+		}
+
+		Collider[] hits = Physics.OverlapSphere(transform.position, attackRange * transform.localScale.x);
+		float closestDistance = float.MaxValue;
+		Transform closestEnemy = null;
+
+		foreach (Collider hit in hits)
+		{
+			if (hit.gameObject.CompareTag("Enemy"))
+			{
+				Vector3 directionToEnemy = hit.transform.position - transform.position;
+				float distance = directionToEnemy.magnitude;
+				float angle = Vector3.SignedAngle(transform.forward, directionToEnemy, transform.up);
+
+				if (distance < closestDistance && distance <= attackRange &&
+					angle >= minYaw && angle <= maxYaw)
+				{
+					closestDistance = distance;
+					closestEnemy = hit.transform;
+				}
+			}
+		}
+
+		target = closestEnemy;
+
+		if (target != null && !isMoveable)
+		{
+			Shoot(projectileSpeed, attackDamage, projectileLifetime);
+		}
+	}
+
 	void CalculateInitialOffsets()
 	{
 		// Calculate the initial yaw offset
