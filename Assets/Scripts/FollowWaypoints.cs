@@ -17,6 +17,9 @@ public class FollowWaypoints : NetworkBehaviour
 
 	private List<GameObject> waypoints = new List<GameObject>();
 
+	public float DistanceTraveled { get; private set; } = 0f;
+	private Vector3 lastPosition;
+
 	private void Start()
 	{
 		foreach (Transform child in path.transform)
@@ -49,5 +52,12 @@ public class FollowWaypoints : NetworkBehaviour
 			}
 		}
 
+		// Update the distance traveled only if moving
+		if (!endOfPath)
+		{
+			DistanceTraveled += Vector3.Distance(transform.position, lastPosition);
+		}
+		// Update last position to current position at the end of the update
+		lastPosition = transform.position;
 	}
 }
