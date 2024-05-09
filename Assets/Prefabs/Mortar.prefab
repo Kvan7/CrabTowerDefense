@@ -3303,6 +3303,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   vrCustomNetworkPlayerScript: {fileID: 0}
+  isMoveable: 1
   targetZone: {fileID: 8871305592949902931}
   rotatingObjectParent: {fileID: 7642895598178655386}
   towerInfo: {fileID: 11400000, guid: bae628299bb6ab4469b6fce42f2e4b9d, type: 2}
@@ -3577,7 +3578,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  tower: {fileID: 0}
+  tower: {fileID: 175235209404573317}
   vrCustomNetworkPlayerScript: {fileID: 0}
 --- !u!114 &1333664065237097616
 MonoBehaviour:

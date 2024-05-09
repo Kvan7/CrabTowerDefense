@@ -38,10 +38,12 @@ public class Enemy : NetworkBehaviour
 		OnCurrentHealthChanged(oldHealth, health);
 	}
 
+	[Command(requiresAuthority = false)]
 	private void OnCurrentHealthChanged(int oldHealth, int newHealth)
 	{
 		if (isServer)
 		{
+			health = newHealth;
 			RpcUpdateHealth(newHealth);
 			if (newHealth <= 0)
 			{

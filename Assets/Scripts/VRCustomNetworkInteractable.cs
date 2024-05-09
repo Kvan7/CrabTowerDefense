@@ -9,7 +9,7 @@ public class VRCustomNetworkInteractable : NetworkBehaviour
     private Rigidbody rb;
     //private XRGrabInteractable xRGrabInteractable;
     // public VRWeapon vrWeapon;
-    public Tower tower;
+    public AbstractTower tower;
 
     private void Start()
     {

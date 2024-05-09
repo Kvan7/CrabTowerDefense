@@ -560,6 +560,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   vrCustomNetworkPlayerScript: {fileID: 0}
+  isMoveable: 1
   projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
   towerInfo: {fileID: 11400000, guid: 8c7353057e5a5a14da3981bdaf4a8b46, type: 2}
   towerLever: {fileID: 5877705636625055844}
@@ -1171,10 +1172,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4787228807492158669, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1635741871009162067}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
 --- !u!4 &5833318159376629176 stripped
 Transform:
@@ -1192,46 +1190,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e601cf28e9702c945abe3b90e7f51974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6533110010164593307 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4787228807492158669, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
-  m_PrefabInstance: {fileID: 1785083293364815446}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1635741871009162067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6533110010164593307}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 8599741417935313570}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  sendIntervalMultiplier: 1
-  timelineOffset: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 3
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
---- !u!4 &8599741417935313570 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8042734651732729076, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
-  m_PrefabInstance: {fileID: 1785083293364815446}
-  m_PrefabAsset: {fileID: 0}

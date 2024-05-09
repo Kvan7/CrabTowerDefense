@@ -110,18 +110,28 @@ public class MortarTower : AbstractTower
 	}
 	public void Shoot()
 	{
+		// // Instantiate the projectile at the tube's position and orientation
+		// GameObject projectile = Instantiate(projectilePrefab, tube.position, Quaternion.identity);
+		// Rigidbody rb = projectile.GetComponent<Rigidbody>();
+		// Shell shell = projectile.GetComponent<Shell>();
+		// shell.explodeRadius = range;
+		// shell.damage = damage;
+
+		// // Apply the force in the tube's upward direction
+		// Vector3 force = tube.up * launchForce;
+
+		// // Apply the force to the projectile
+		// rb.AddForce(force, ForceMode.Impulse);
 		// Instantiate the projectile at the tube's position and orientation
 		GameObject projectile = Instantiate(projectilePrefab, tube.position, Quaternion.identity);
-		NetworkServer.Spawn(projectile);
-		Rigidbody rb = projectile.GetComponent<Rigidbody>();
-		Shell shell = projectile.GetComponent<Shell>();
-		shell.explodeRadius = range;
-		shell.damage = damage;
+		projectile.GetComponent<Shell>().explodeRadius = range;
+		projectile.GetComponent<Shell>().damage = damage;
 
 		// Apply the force in the tube's upward direction
 		Vector3 force = tube.up * launchForce;
 
 		// Apply the force to the projectile
-		rb.AddForce(force, ForceMode.Impulse);
+		projectile.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+		NetworkServer.Spawn(projectile);
 	}
 }

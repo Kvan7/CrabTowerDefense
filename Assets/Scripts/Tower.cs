@@ -7,6 +7,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public abstract class AbstractTower : NetworkBehaviour
 {
 	public VRCustomNetworkPlayerScript vrCustomNetworkPlayerScript;
+
+	public bool isMoveable = true;
 }
 
 public class Tower : AbstractTower
@@ -30,10 +32,11 @@ public class Tower : AbstractTower
 	public GameObject lookAtObject; // Assign this in the editor
 	public Transform projectileSpawnPoint; // Assign this in the editor
 
-	[SyncVar(hook = nameof(OnIsMoveableChanged))]
+	// [SyncVar(hook = nameof(OnIsMoveableChanged))]
+	[SyncVar]
 	private bool _isMoveable = true; // Whether the tower can be moved
 	protected Coroutine shootCoroutine;
-	public bool isMoveable
+	public new bool isMoveable
 	{
 		get { return _isMoveable; }
 		set
