@@ -1,6 +1,7 @@
 using System.Collections;
 using Mirror;
 using UnityEngine;
+using UnityEngine.XR.Content.Interaction;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public abstract class AbstractTower : NetworkBehaviour
@@ -12,6 +13,8 @@ public class Tower : AbstractTower
 {
 	public GameObject projectilePrefab;
 	public TowerInfo towerInfo;
+
+	public XRLever towerLever;
 	#region Tower Props
 	// Move to scriptable object later
 	protected float fireRate = 1f;
@@ -204,6 +207,7 @@ public class Tower : AbstractTower
 		if (isServer)
 		{
 			_isMoveable = newIsMoveable;
+			towerLever.value = !newIsMoveable;
 			RpcUpdateIsMoveable(newIsMoveable);
 		}
 	}
@@ -212,23 +216,24 @@ public class Tower : AbstractTower
 	private void RpcUpdateIsMoveable(bool newIsMoveable)
 	{
 		_isMoveable = newIsMoveable;
+		towerLever.value = !newIsMoveable;
 	}
 
-	[Command]
-	public void CmdSyncTransform(Vector3 position, Quaternion rotation)
-	{
-		transform.position = position;
-		transform.rotation = rotation;
-		RpcSyncTransform(position, rotation);
-	}
+	// [Command]
+	// public void CmdSyncTransform(Vector3 position, Quaternion rotation)
+	// {
+	// 	transform.position = position;
+	// 	transform.rotation = rotation;
+	// 	RpcSyncTransform(position, rotation);
+	// }
 
-	[ClientRpc]
-	public void RpcSyncTransform(Vector3 position, Quaternion rotation)
-	{
-		if (!isOwned)
-		{
-			transform.position = position;
-			transform.rotation = rotation;
-		}
-	}
+	// [ClientRpc]
+	// public void RpcSyncTransform(Vector3 position, Quaternion rotation)
+	// {
+	// 	if (!isOwned)
+	// 	{
+	// 		transform.position = position;
+	// 		transform.rotation = rotation;
+	// 	}
+	// }
 }
