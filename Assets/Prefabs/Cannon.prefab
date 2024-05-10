@@ -579,6 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
+  - {fileID: 6108707718123781542}
   - {fileID: 7660562750333457082}
   m_InteractionLayerMask:
     serializedVersion: 2

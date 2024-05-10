@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7987040351708334569
 Transform:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  particleEffectPrefab: {fileID: 2620647290435028534, guid: 4551bdcae9ba0c9448e85d0e5d5d8e69, type: 3}
+  particleEffectPrefab: {fileID: 3432958286849152088, guid: bdf8b3b1a0c1333449422ca6f3270603, type: 3}
 --- !u!135 &1581235582965467554
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2f4b494e4506734468ba99f1868eed0e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2f4b494e4506734468ba99f1868eed0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -303,8 +303,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 20500000, guid: 2f4b494e4506734468ba99f1868eed0e, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 100004, guid: 2f4b494e4506734468ba99f1868eed0e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f4b494e4506734468ba99f1868eed0e, type: 3}
