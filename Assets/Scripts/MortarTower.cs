@@ -17,6 +17,9 @@ public class MortarTower : AbstractTower
 	[SerializeField] private float fireRate = 0.333f;
 	[SerializeField] private float damage = 10;
 
+	public AudioSource audioSource;
+	public AudioClip firingClip;
+
 	private Coroutine shootCoroutine;	
 	private bool m_automaticFire = false;
 	public bool automaticFire
@@ -133,5 +136,6 @@ public class MortarTower : AbstractTower
 		// Apply the force to the projectile
 		projectile.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
 		NetworkServer.Spawn(projectile);
+		audioSource.PlayOneShot(firingClip);
 	}
 }

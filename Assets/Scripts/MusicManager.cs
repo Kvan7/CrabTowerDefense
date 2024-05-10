@@ -41,8 +41,10 @@ public class MusicManager : NetworkBehaviour
     private void WaveStartMusic(){
         audioSource.Stop();
         Debug.Log("Wave Start Music Function Called");
+        audioSource.priority = 0;
         audioSource.PlayOneShot(battleFluteFX1);
 
+        audioSource.priority = 128;
         audioSource.clip = battleLoopable;
         audioSource.loop = true;
         audioSource.Play();
@@ -52,8 +54,10 @@ public class MusicManager : NetworkBehaviour
     private void WaveCompleteVictoryMusic(){
         Debug.Log("Wave Complete Victory Music Function Called");
         audioSource.Stop();
+        audioSource.priority = 0;
         audioSource.PlayOneShot(roundVictory);
 
+        audioSource.priority = 128;
         audioSource.clip = preparationLoopable;
         audioSource.loop = true;
         audioSource.Play();
@@ -63,8 +67,10 @@ public class MusicManager : NetworkBehaviour
     private void WaveCompleteDefeatMusic(){
         Debug.Log("Wave Complete Defeat Music Function Called");
         audioSource.Stop();
+        audioSource.priority = 0;
         audioSource.PlayOneShot(roundDefeat);
 
+        audioSource.priority = 128;
         audioSource.clip = preparationLoopable;
         audioSource.loop = true;
         audioSource.Play();

@@ -14,6 +14,10 @@ public class ShopManager : NetworkBehaviour
 	[SerializeField] private TMP_Text moneyText;
 	public Transform spawnPoint; // Position to spawn towers
 
+	public AudioSource audioSource;
+	public AudioClip buySuccessClip;
+	public AudioClip buyFailClip;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -88,6 +92,7 @@ public class ShopManager : NetworkBehaviour
 	{
 		if (SpendMoney(item.cost))
 		{
+			PurchaseItemSuccessNoise();
 			// Instantiate tower or apply upgrade
 			GameObject tower = Instantiate(item.prefab, spawnPoint.position, Quaternion.identity);
 			NetworkServer.Spawn(tower);
@@ -95,6 +100,19 @@ public class ShopManager : NetworkBehaviour
 		else
 		{
 			// Show feedback: Not enough money
+			PurchaseItemFailNoise();
 		}
+	}
+
+	[ClientRpc]
+	private void PurchaseItemSuccessNoise()
+	{
+		audioSource.PlayOneShot(buySuccessClip);
+	}
+
+	[ClientRpc]
+	private void PurchaseItemFailNoise()
+	{
+		audioSource.PlayOneShot(buyFailClip);
 	}
 }
