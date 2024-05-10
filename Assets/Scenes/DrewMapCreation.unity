@@ -1634,6 +1634,9 @@ MonoBehaviour:
   waveSpawner: {fileID: 1722165008}
   moneyText: {fileID: 1543020660}
   spawnPoint: {fileID: 547388808}
+  audioSource: {fileID: 0}
+  buySuccessClip: {fileID: 0}
+  buyFailClip: {fileID: 0}
 --- !u!4 &531739281
 Transform:
   m_ObjectHideFlags: 0
@@ -4441,6 +4444,71 @@ MonoBehaviour:
   onWaveDefeat:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &1732174255
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35.57838
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07450334
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.4115043
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -740970532819900862, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bea673ec3cccb7d4598cf1643c4381a0, type: 2}
+    - target: {fileID: 919132149155446097, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_Name
+      value: coconutCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461880458041205784, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bea673ec3cccb7d4598cf1643c4381a0, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d46c3c02e5202e1488e174a8c085fb50, type: 3}
 --- !u!1001 &1796625326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5174,3 +5242,4 @@ SceneRoots:
   - {fileID: 240294981}
   - {fileID: 684413475}
   - {fileID: 1128011756}
+  - {fileID: 1732174255}
