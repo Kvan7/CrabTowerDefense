@@ -1734,6 +1734,7 @@ MonoBehaviour:
   maxYaw: 90
   minPitch: -45
   maxPitch: 45
+  UseActivateControl: 0
 --- !u!54 &2479504326057959230
 Rigidbody:
   m_ObjectHideFlags: 0
