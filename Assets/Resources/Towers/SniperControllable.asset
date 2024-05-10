@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SniperControllable
   m_EditorClassIdentifier: 
   fireRate: 1
-  attackDamage: 50
-  projectileSpeed: 5
+  attackDamage: 100
+  projectileSpeed: 20
   projectileLifetime: 2
   attackRange: 100
   rotationSpeed: 1
