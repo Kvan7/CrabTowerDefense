@@ -1501,7 +1501,7 @@ MonoBehaviour:
   isMoveable: 1
   projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
   towerInfo: {fileID: 11400000, guid: 71bd13385b9babf439722487917abfb8, type: 2}
-  towerLever: {fileID: 0}
+  towerLever: {fileID: 5249039999720763540}
   rangeIndicator: {fileID: 7491419058016229974}
   lookAtObject: {fileID: 3257045979547027774}
   projectileSpawnPoint: {fileID: 133548372465103320}
@@ -8445,6 +8445,17 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &5249039999720763540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5283898766228162098, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+  m_PrefabInstance: {fileID: 111600426143168166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e601cf28e9702c945abe3b90e7f51974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5313548024093314376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5202211970501327854, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
