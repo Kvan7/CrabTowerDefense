@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Mortar
   m_EditorClassIdentifier: 
   itemName: Mortar
-  cost: 1
+  cost: 150
   prefab: {fileID: 4712599190803145313, guid: 9dda2f53a7ee3ac45809ae3e660054b2, type: 3}

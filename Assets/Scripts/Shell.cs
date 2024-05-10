@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class Shell : MonoBehaviour
+public class Shell : NetworkBehaviour
 {
 	Rigidbody rb;
 	public float explodeRadius = 5f;
 	public float damage = 10f;
+	public AudioSource audioSource;
+	public AudioClip explosionClip;
 
 	void Start()
 	{
@@ -46,9 +49,12 @@ public class Shell : MonoBehaviour
 		}
 
 		// Play the explosion effect
+		// ExplosionNoise();
+		audioSource.PlayOneShot(explosionClip);
 		GetComponent<ShellEffectHandler>().PlayExplodeEffect();
+		gameObject.GetComponent<MeshRenderer>().enabled = false;
 		// Destroy the shell
-		Destroy(gameObject);
+		Destroy(gameObject, explosionClip.length);
 	}
 
 	private void OnDrawGizmos()
@@ -56,4 +62,10 @@ public class Shell : MonoBehaviour
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, explodeRadius);
 	}
+
+	// [ClientRpc]
+	// private void ExplosionNoise()
+	// {
+	// 	audioSource.PlayOneShot(explosionClip);
+	// }
 }

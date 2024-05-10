@@ -30,7 +30,7 @@ public class MortarTower : AbstractTower
 		set
 		{
 			m_automaticFire = value;
-			// OnAutomaticFireChanged(!m_automaticFire, m_automaticFire);
+			OnAutomaticFireChanged(value);
 			if (shootCoroutine != null)
 			{
 				StopCoroutine(shootCoroutine);
@@ -165,5 +165,21 @@ public class MortarTower : AbstractTower
 		audioSource.PlayOneShot(firingClip);
 
 		ShootEvent();
+	}
+
+	[Command(requiresAuthority = false)]
+	private void OnAutomaticFireChanged(bool leverValue)
+	{
+		if (isServer)
+		{
+			boxLever.value = leverValue;
+			RpcAutomaticFireChanged(leverValue);
+		}
+	}
+
+	[ClientRpc]
+	private void RpcAutomaticFireChanged(bool leverValue)
+	{
+		boxLever.value = leverValue;
 	}
 }
