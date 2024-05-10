@@ -174,9 +174,9 @@ public class Tower : AbstractTower
 		// Calculate the direction based on the lookAtObject's forward direction
 		Vector3 shootDirection = lookAtObject.transform.forward;
 
-		projectile.TowerSettings(projectileSpeed, attackDamage, projectileLifetime);
-		projectile.InitializeDirection(shootDirection);
-		// NetworkServer.Spawn(projectileObject);
+		projectileObject.GetComponent<Projectile>().TowerSettings(projectileSpeed, attackDamage, projectileLifetime);
+		projectileObject.GetComponent<Projectile>().InitializeDirection(shootDirection);
+		NetworkServer.Spawn(projectileObject);
 	}
 
 	public void Shoot()

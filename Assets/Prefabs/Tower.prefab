@@ -629,14 +629,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16310903646d2754d9bb0996dca6625a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  vrCustomNetworkPlayerScript: {fileID: 0}
+  isMoveable: 1
   projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
-  towerInfo: {fileID: 0}
+  towerInfo: {fileID: 11400000, guid: ccb4bcc9ca97aa144b1109bac281b5d7, type: 2}
+  towerLever: {fileID: 5877705636625055844}
   rangeIndicator: {fileID: 1722502045267528470}
   lookAtObject: {fileID: 3216857142517122292}
-  vrCustomNetworkPlayerScript: {fileID: 0}
+  projectileSpawnPoint: {fileID: 0}
 --- !u!54 &3197809592703383179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -885,7 +888,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  tower: {fileID: 0}
+  tower: {fileID: 3207196837220785927}
   vrCustomNetworkPlayerScript: {fileID: 0}
 --- !u!114 &8852668404758301820
 MonoBehaviour:
@@ -1125,56 +1128,21 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6852583441802702369, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1765200022476542046}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
 --- !u!4 &5833318159376629176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6144910248714817794, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
   m_PrefabInstance: {fileID: 410672703049526458}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6533110010164593307 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6852583441802702369, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
+--- !u!114 &5877705636625055844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6062635129177533662, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
   m_PrefabInstance: {fileID: 410672703049526458}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1765200022476542046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6533110010164593307}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Script: {fileID: 11500000, guid: e601cf28e9702c945abe3b90e7f51974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 1
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 8599741417935313570}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  sendIntervalMultiplier: 1
-  timelineOffset: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 3
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
---- !u!4 &8599741417935313570 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8280830968190268952, guid: da1ba14e491d0a04a9a1d49606809678, type: 3}
-  m_PrefabInstance: {fileID: 410672703049526458}
-  m_PrefabAsset: {fileID: 0}
