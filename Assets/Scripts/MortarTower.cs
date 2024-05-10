@@ -20,6 +20,8 @@ public class MortarTower : AbstractTower
 	public AudioSource audioSource;
 	public AudioClip firingClip;
 
+	public XRLever boxLever;
+
 	private Coroutine shootCoroutine;
 	private bool m_automaticFire = false;
 	public bool automaticFire
@@ -28,6 +30,7 @@ public class MortarTower : AbstractTower
 		set
 		{
 			m_automaticFire = value;
+			// OnAutomaticFireChanged(!m_automaticFire, m_automaticFire);
 			if (shootCoroutine != null)
 			{
 				StopCoroutine(shootCoroutine);
@@ -76,6 +79,7 @@ public class MortarTower : AbstractTower
 		targetZone.localScale = new Vector3(towerInfo.attackRange * 2, targetZone.localScale.y * towerInfo.attackRange, towerInfo.attackRange * 2);
 	}
 
+	[Command(requiresAuthority = false)]
 	private void OnRangeChange(float value)
 	{
 		float angleDegrees = value * 30 + 3.0f;
@@ -99,11 +103,33 @@ public class MortarTower : AbstractTower
 
 		// Set the targetZone position based on the calculated horizontal distance
 		targetZone.localPosition = new Vector3(0, 0, horizontalDistance);
+		RpcTubeRotationChange(tube.localRotation);
+		RpcTargetZonePositionChange(targetZone.localPosition);
 	}
 
+	[ClientRpc]
+	private void RpcTargetZonePositionChange(Vector3 localPosition)
+	{
+		targetZone.localPosition = localPosition;
+	}
+
+	[ClientRpc]
+	private void RpcTubeRotationChange(Quaternion localRotation)
+	{
+		tube.localRotation = localRotation;
+	}
+
+	[Command(requiresAuthority = false)]
 	private void OnRotateChange(float value)
 	{
 		rotatingObjectParent.localRotation = Quaternion.Euler(0, value * 36, 0);
+		RpcRotatingObjectRotationChange(rotatingObjectParent.localRotation);
+	}
+
+	[ClientRpc]
+	private void RpcRotatingObjectRotationChange(Quaternion localRotation)
+	{
+		rotatingObjectParent.localRotation = localRotation;
 	}
 
 	private void OnDestroy()
