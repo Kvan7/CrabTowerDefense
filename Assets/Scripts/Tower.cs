@@ -9,6 +9,15 @@ public abstract class AbstractTower : NetworkBehaviour
 	public VRCustomNetworkPlayerScript vrCustomNetworkPlayerScript;
 
 	public bool isMoveable = true;
+
+	// Generic tower event hooks
+	public delegate void ShotEventHandler();
+	public event ShotEventHandler OnShot;
+
+	protected void ShootEvent()
+	{
+		OnShot?.Invoke();
+	}
 }
 
 public class Tower : AbstractTower
@@ -36,6 +45,7 @@ public class Tower : AbstractTower
 	[SyncVar]
 	private bool _isMoveable = true; // Whether the tower can be moved
 	protected Coroutine shootCoroutine;
+	public bool EnemiesInRange { protected set; get; } = false;
 	public new bool isMoveable
 	{
 		get { return _isMoveable; }
@@ -139,6 +149,7 @@ public class Tower : AbstractTower
 			}
 		}
 
+		EnemiesInRange = enemyCount > 0;
 
 		target = closestEnemy;
 
@@ -177,6 +188,8 @@ public class Tower : AbstractTower
 		projectileObject.GetComponent<Projectile>().TowerSettings(projectileSpeed, attackDamage, projectileLifetime);
 		projectileObject.GetComponent<Projectile>().InitializeDirection(shootDirection);
 		NetworkServer.Spawn(projectileObject);
+
+		ShootEvent();
 	}
 
 	public void Shoot()

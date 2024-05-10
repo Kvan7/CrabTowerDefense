@@ -1498,8 +1498,10 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   vrCustomNetworkPlayerScript: {fileID: 0}
+  isMoveable: 1
   projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
   towerInfo: {fileID: 11400000, guid: 71bd13385b9babf439722487917abfb8, type: 2}
+  towerLever: {fileID: 0}
   rangeIndicator: {fileID: 7491419058016229974}
   lookAtObject: {fileID: 3257045979547027774}
   projectileSpawnPoint: {fileID: 133548372465103320}
@@ -1515,6 +1517,7 @@ MonoBehaviour:
   maxYaw: 90
   minPitch: -45
   maxPitch: 45
+  UseActivateControl: 1
 --- !u!114 &-6759316907297253874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8153,6 +8156,10 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 5283898766228162098, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5283898766228162098, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
       propertyPath: m_OnLeverActivate.m_PersistentCalls.m_Calls.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -8387,6 +8394,10 @@ PrefabInstance:
     - target: {fileID: 7483610665172923651, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8042734651732729076, guid: 36eff8b49ecdca745894efb1d2ce5f8f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.4226183
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

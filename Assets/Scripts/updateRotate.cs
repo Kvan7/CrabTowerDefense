@@ -22,6 +22,6 @@ public class updateRotate : MonoBehaviour
 	public virtual void Rot(float value)
 	{
 		toRotate.localRotation = Quaternion.Euler(toRotate.localRotation.x, toRotate.localRotation.y, 720 * value);
-		Debug.Log("Rotating: " + value + " X: " + toRotate.localRotation.x + " Y: " + toRotate.localRotation.y + " Z: " + toRotate.localRotation.z);
+		// Debug.Log("Rotating: " + value + " X: " + toRotate.localRotation.x + " Y: " + toRotate.localRotation.y + " Z: " + toRotate.localRotation.z);
 	}
 }

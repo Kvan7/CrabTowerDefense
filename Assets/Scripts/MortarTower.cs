@@ -22,7 +22,7 @@ public class MortarTower : AbstractTower
 
 	public XRLever boxLever;
 
-	private Coroutine shootCoroutine;	
+	private Coroutine shootCoroutine;
 	private bool m_automaticFire = false;
 	public bool automaticFire
 	{
@@ -163,26 +163,7 @@ public class MortarTower : AbstractTower
 		projectile.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
 		NetworkServer.Spawn(projectile);
 		audioSource.PlayOneShot(firingClip);
+
+		ShootEvent();
 	}
-
-	// [Command(requiresAuthority = false)]
-	// private void OnAutomaticFireChanged(bool oldAutomaticFire, bool newAutomaticFire)
-	// {
-	// 	if (isServer)
-	// 	{
-	// 		automaticFire = newAutomaticFire;
-	// 		boxLever.value = newAutomaticFire;
-	// 		RpcUpdateAutomaticFireChanged(newAutomaticFire);
-	// 	}
-	// }
-
-	// [ClientRpc]
-	// private void RpcUpdateAutomaticFireChanged(bool newAutomaticFire)
-	// {
-	// 	if (automaticFire != newAutomaticFire)
-	// 	{
-	// 		automaticFire = newAutomaticFire;
-	// 		boxLever.value = newAutomaticFire;
-	// 	}
-	// }
 }

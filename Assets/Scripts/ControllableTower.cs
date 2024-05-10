@@ -24,6 +24,7 @@ public class ControllableTower : Tower
 
 	private Coroutine playerShoot;
 
+	[SerializeField] private bool UseActivateControl = true;
 	protected override void Start()
 	{
 		CalculateInitialOffsets();
@@ -43,47 +44,31 @@ public class ControllableTower : Tower
 
 	protected override void LookAtTarget()
 	{
-		if (target == null)
-			return;
-
-		// Calculate direction to target
-		Vector3 targetDirection = target.position - transform.position;
-		targetDirection.y = 0; // Remove vertical component for yaw calculation
-
-		// Calculate yaw rotation to point at target horizontally
-		Quaternion yawRotation = Quaternion.LookRotation(targetDirection);
-		if (!instantRotation)
+		if (target != null)
 		{
-			yawPivot.rotation = Quaternion.Slerp(yawPivot.rotation, yawRotation, Time.deltaTime * rotationSpeed);
-		}
-		else
-		{
-			yawPivot.rotation = yawRotation;
-		}
-
-		// Calculate the pitch rotation to point at target vertically
-		if (pitchPivot != null)
-		{
-			Vector3 relativePos = target.position - pitchPivot.position;
-			relativePos.x = 0;
-			relativePos.z = 0;
-			// float angle = Vector3.SignedAngle(pitchPivot.forward, relativePos, pitchPivot.right);
-
-			// // Clamp angle within pitch limits if useLimits is true
-			// if (useLimits)
-			// {
-			// 	angle = Mathf.Clamp(angle, minPitch, maxPitch);
-			// }
-
-			Quaternion pitchRotation = Quaternion.LookRotation(relativePos);
-
+			// Handle the Yaw rotation (horizontal)
+			Vector3 targetLevelPosition = new Vector3(target.position.x, yawPivot.position.y, target.position.z);
+			Vector3 directionToTarget = targetLevelPosition - yawPivot.position;
+			Quaternion targetYawRotation = Quaternion.LookRotation(directionToTarget);
 			if (!instantRotation)
 			{
-				pitchPivot.localRotation = Quaternion.Slerp(pitchPivot.localRotation, pitchRotation, Time.deltaTime * rotationSpeed);
+				yawPivot.rotation = Quaternion.Slerp(yawPivot.rotation, Quaternion.Euler(0, targetYawRotation.eulerAngles.y, 0), Time.deltaTime * rotationSpeed);
 			}
 			else
 			{
-				pitchPivot.localRotation = pitchRotation;
+				yawPivot.rotation = Quaternion.Euler(0, targetYawRotation.eulerAngles.y, 0);
+			}
+
+			// Handle the Pitch rotation (vertical)
+			directionToTarget = target.position - pitchPivot.position;
+			Quaternion targetPitchRotation = Quaternion.LookRotation(directionToTarget);
+			if (!instantRotation)
+			{
+				pitchPivot.localRotation = Quaternion.Slerp(pitchPivot.localRotation, Quaternion.Euler(targetPitchRotation.eulerAngles.x, 0, 0), Time.deltaTime * rotationSpeed);
+			}
+			else
+			{
+				pitchPivot.localRotation = Quaternion.Euler(targetPitchRotation.eulerAngles.x, 0, 0);
 			}
 		}
 	}
@@ -116,12 +101,16 @@ public class ControllableTower : Tower
 				}
 			}
 		}
-
 		target = closestEnemy;
 
 		if (target != null && !isMoveable)
 		{
+			EnemiesInRange = true;
 			Shoot(projectileSpeed, attackDamage, projectileLifetime);
+		}
+		else
+		{
+			EnemiesInRange = false;
 		}
 	}
 
@@ -198,7 +187,8 @@ public class ControllableTower : Tower
 	}
 	public void ActivateControl(ActivateEventArgs args)
 	{
-		Debug.Log("Activate control");
+		if (!UseActivateControl)
+			return;
 		if (playerShoot != null)
 			StopCoroutine(playerShoot);
 		playerShoot = StartCoroutine(PlayerShoot());
@@ -206,6 +196,8 @@ public class ControllableTower : Tower
 
 	public void DeactivateControl(DeactivateEventArgs args)
 	{
+		if (!UseActivateControl)
+			return;
 		if (playerShoot != null)
 			StopCoroutine(playerShoot);
 		playerShoot = null;
