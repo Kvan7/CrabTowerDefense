@@ -20,7 +20,7 @@ public class MortarTower : AbstractTower
 	public AudioSource audioSource;
 	public AudioClip firingClip;
 
-	private Coroutine shootCoroutine;	
+	private Coroutine shootCoroutine;
 	private bool m_automaticFire = false;
 	public bool automaticFire
 	{
@@ -137,5 +137,7 @@ public class MortarTower : AbstractTower
 		projectile.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
 		NetworkServer.Spawn(projectile);
 		audioSource.PlayOneShot(firingClip);
+
+		ShootEvent();
 	}
 }

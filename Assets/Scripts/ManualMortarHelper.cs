@@ -26,13 +26,13 @@ public class ManualMortarHelper : MonoBehaviour
 		float elapsedTime = 0.0f;
 		Vector3 startPos = fakeObject.transform.position;
 		Vector3 endPos = bottom.position;
-		Debug.Log("start:" + startPos);
-		Debug.Log("end:" + endPos);
+		// Debug.Log("start:" + startPos);
+		// Debug.Log("end:" + endPos);
 		while (elapsedTime < time)
 		{
 			fakeObject.transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / time);
 			elapsedTime += Time.deltaTime;
-			Debug.Log(fakeObject.transform.position);
+			// Debug.Log(fakeObject.transform.position);
 			yield return null;
 		}
 		Destroy(fakeObject.transform.gameObject);
