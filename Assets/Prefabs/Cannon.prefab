@@ -486,10 +486,10 @@ GameObject:
   - component: {fileID: 3007919538503219637}
   - component: {fileID: -5659955487103643697}
   - component: {fileID: 8852668404758301820}
-  - component: {fileID: 26328735448205015}
   - component: {fileID: 780169500414737087}
+  - component: {fileID: 1555715351142818271}
   m_Layer: 7
-  m_Name: Tower
+  m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -532,12 +532,12 @@ MonoBehaviour:
   syncInterval: 0
   vrCustomNetworkPlayerScript: {fileID: 0}
   isMoveable: 1
-  projectilePrefab: {fileID: 6733002936051004049, guid: a835ccf945f6a9f4bbaa2aa771d26ca7, type: 3}
+  projectilePrefab: {fileID: 6733002936051004049, guid: b9c4eae5760d6f84aa1b2a223d41e11d, type: 3}
   towerInfo: {fileID: 11400000, guid: ccb4bcc9ca97aa144b1109bac281b5d7, type: 2}
   towerLever: {fileID: 5877705636625055844}
   rangeIndicator: {fileID: 1722502045267528470}
   lookAtObject: {fileID: 3216857142517122292}
-  projectileSpawnPoint: {fileID: 0}
+  projectileSpawnPoint: {fileID: 4200124538187084539}
 --- !u!54 &3197809592703383179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -821,7 +821,27 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
---- !u!82 &26328735448205015
+--- !u!114 &780169500414737087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882760073860709499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5968055d6f2fbe641b6ddb9e7d31ed75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  shootEffectPrefab: {fileID: 141433446842962269, guid: 7386ab23fcaef384baaf2ce4d94a0435, type: 3}
+  shootEffectSpawnPoint: {fileID: 4200124538187084539}
+  audioSource: {fileID: 1555715351142818271}
+  shootSoundClip: {fileID: 8300000, guid: 74a82de44f72e6849ae083ecd7ecccc5, type: 3}
+  effectDuration: 2
+--- !u!82 &1555715351142818271
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -834,7 +854,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: -0.66
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -907,7 +927,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1.047
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -917,26 +937,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &780169500414737087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3882760073860709499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5968055d6f2fbe641b6ddb9e7d31ed75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  shootEffectPrefab: {fileID: 141433446842962269, guid: 7386ab23fcaef384baaf2ce4d94a0435, type: 3}
-  shootEffectSpawnPoint: {fileID: 4200124538187084539}
-  audioSource: {fileID: 26328735448205015}
-  shootSoundClip: {fileID: 8300000, guid: 74a82de44f72e6849ae083ecd7ecccc5, type: 3}
-  effectDuration: 2
 --- !u!1 &4416087806037715298
 GameObject:
   m_ObjectHideFlags: 0

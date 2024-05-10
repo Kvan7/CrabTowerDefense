@@ -131,19 +131,19 @@ public class Tower : AbstractTower
 	protected virtual void UpdateTarget()
 	{
 		Collider[] hits = Physics.OverlapSphere(transform.position, attackRange * gameObject.transform.localScale.x);
-		float closestDistance = float.MaxValue;
-		Transform closestEnemy = null;
+		float firstDistance = float.MinValue;
+		Transform firstEnemy = null;
 		int enemyCount = 0;
 
 		foreach (Collider hit in hits)
 		{
 			if (hit.gameObject.CompareTag("Enemy"))
 			{
-				float distance = Vector3.Distance(transform.position, hit.transform.position);
-				if (distance < closestDistance)
+				// float distance = Vector3.Distance(transform.position, hit.transform.position);
+				if (hit.gameObject.GetComponent<FollowWaypoints>().DistanceTraveled > firstDistance)
 				{
-					closestDistance = distance;
-					closestEnemy = hit.transform;
+					firstDistance = hit.gameObject.GetComponent<FollowWaypoints>().DistanceTraveled;
+					firstEnemy = hit.transform;
 				}
 				enemyCount++;
 			}
@@ -151,7 +151,7 @@ public class Tower : AbstractTower
 
 		EnemiesInRange = enemyCount > 0;
 
-		target = closestEnemy;
+		target = firstEnemy;
 
 		if (target != null && !isMoveable)
 		{

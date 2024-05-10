@@ -82,9 +82,8 @@ public class ControllableTower : Tower
 		}
 
 		Collider[] hits = Physics.OverlapSphere(transform.position, attackRange * transform.localScale.x);
-		float closestDistance = float.MaxValue;
-		Transform closestEnemy = null;
-
+		float farthestDistance = float.MinValue;
+		Transform firstEnemy = null;
 		foreach (Collider hit in hits)
 		{
 			if (hit.gameObject.CompareTag("Enemy"))
@@ -92,16 +91,16 @@ public class ControllableTower : Tower
 				Vector3 directionToEnemy = hit.transform.position - transform.position;
 				float distance = directionToEnemy.magnitude;
 				float angle = Vector3.SignedAngle(transform.forward, directionToEnemy, transform.up);
-
-				if (distance < closestDistance && distance <= attackRange &&
+				if (hit.gameObject.GetComponent<FollowWaypoints>().DistanceTraveled > farthestDistance &&
+					distance <= attackRange &&
 					angle >= minYaw && angle <= maxYaw)
 				{
-					closestDistance = distance;
-					closestEnemy = hit.transform;
+					farthestDistance = hit.gameObject.GetComponent<FollowWaypoints>().DistanceTraveled;
+					firstEnemy = hit.transform;
 				}
 			}
 		}
-		target = closestEnemy;
+		target = firstEnemy;
 
 		if (target != null && !isMoveable)
 		{

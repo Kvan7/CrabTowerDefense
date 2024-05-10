@@ -27,7 +27,7 @@ public class GattlingBarrelIndependent : MonoBehaviour
 
 	void Update()
 	{
-		if (gattlingTower != null && gattlingTower.EnemiesInRange && !gattlingTower.playerControlled)
+		if (gattlingTower != null && gattlingTower.EnemiesInRange && !gattlingTower.playerControlled && !gattlingTower.isMoveable)
 		{
 			// Smooth continuous rotation using Time.deltaTime
 			barrel.Rotate(0, 0, rotationSpeed * Time.deltaTime);
